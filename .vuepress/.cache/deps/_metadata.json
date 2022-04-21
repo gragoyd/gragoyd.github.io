@@ -1,0 +1,164 @@
+{
+  "hash": "7addd95e",
+  "browserHash": "a94dccb8",
+  "optimized": {
+    "@vue/devtools-api": {
+      "src": "../../../node_modules/@vue/devtools-api/lib/esm/index.js",
+      "file": "@vue_devtools-api.js",
+      "fileHash": "7abea11c",
+      "needsInterop": false
+    },
+    "vue": {
+      "src": "../../../node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "0711ec7b",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "src": "../../../node_modules/vue-router/dist/vue-router.esm-bundler.js",
+      "file": "vue-router.js",
+      "fileHash": "7faac6b0",
+      "needsInterop": false
+    },
+    "nprogress": {
+      "src": "../../../node_modules/nprogress/nprogress.js",
+      "file": "nprogress.js",
+      "fileHash": "9f9a1c0f",
+      "needsInterop": true
+    },
+    "lodash.debounce": {
+      "src": "../../../node_modules/lodash.debounce/index.js",
+      "file": "lodash_debounce.js",
+      "fileHash": "003471fd",
+      "needsInterop": true
+    },
+    "@vueuse/core": {
+      "src": "../../../node_modules/@vueuse/core/index.mjs",
+      "file": "@vueuse_core.js",
+      "fileHash": "d04e9210",
+      "needsInterop": false
+    },
+    "mermaid": {
+      "src": "../../../node_modules/mermaid/dist/mermaid.esm.min.mjs",
+      "file": "mermaid.js",
+      "fileHash": "f7734f48",
+      "needsInterop": false
+    },
+    "reveal.js/dist/reveal.esm.js": {
+      "src": "../../../node_modules/reveal.js/dist/reveal.esm.js",
+      "file": "reveal_js_dist_reveal_esm_js.js",
+      "fileHash": "1bd4669b",
+      "needsInterop": false
+    },
+    "reveal.js/plugin/markdown/markdown.esm.js": {
+      "src": "../../../node_modules/reveal.js/plugin/markdown/markdown.esm.js",
+      "file": "reveal_js_plugin_markdown_markdown_esm_js.js",
+      "fileHash": "2e2df714",
+      "needsInterop": false
+    },
+    "reveal.js/plugin/highlight/highlight.esm.js": {
+      "src": "../../../node_modules/reveal.js/plugin/highlight/highlight.esm.js",
+      "file": "reveal_js_plugin_highlight_highlight_esm_js.js",
+      "fileHash": "4922c64b",
+      "needsInterop": false
+    },
+    "reveal.js/plugin/math/math.esm.js": {
+      "src": "../../../node_modules/reveal.js/plugin/math/math.esm.js",
+      "file": "reveal_js_plugin_math_math_esm_js.js",
+      "fileHash": "e08c21d8",
+      "needsInterop": false
+    },
+    "reveal.js/plugin/search/search.esm.js": {
+      "src": "../../../node_modules/reveal.js/plugin/search/search.esm.js",
+      "file": "reveal_js_plugin_search_search_esm_js.js",
+      "fileHash": "02a0d054",
+      "needsInterop": false
+    },
+    "reveal.js/plugin/notes/notes.esm.js": {
+      "src": "../../../node_modules/reveal.js/plugin/notes/notes.esm.js",
+      "file": "reveal_js_plugin_notes_notes_esm_js.js",
+      "fileHash": "63f06727",
+      "needsInterop": false
+    },
+    "reveal.js/plugin/zoom/zoom.esm.js": {
+      "src": "../../../node_modules/reveal.js/plugin/zoom/zoom.esm.js",
+      "file": "reveal_js_plugin_zoom_zoom_esm_js.js",
+      "fileHash": "82c1c46f",
+      "needsInterop": false
+    },
+    "photoswipe": {
+      "src": "../../../node_modules/photoswipe/dist/photoswipe.esm.js",
+      "file": "photoswipe.js",
+      "fileHash": "f3c09b75",
+      "needsInterop": false
+    },
+    "bcryptjs": {
+      "src": "../../../node_modules/bcryptjs/dist/bcrypt.js",
+      "file": "bcryptjs.js",
+      "fileHash": "c0eb453d",
+      "needsInterop": true
+    },
+    "lodash.throttle": {
+      "src": "../../../node_modules/lodash.throttle/index.js",
+      "file": "lodash_throttle.js",
+      "fileHash": "afbb6417",
+      "needsInterop": true
+    },
+    "@mr-hope/vuepress-shared/lib/client": {
+      "src": "../../../node_modules/@mr-hope/vuepress-shared/lib/client/index.js",
+      "file": "@mr-hope_vuepress-shared_lib_client.js",
+      "fileHash": "af460d92",
+      "needsInterop": false
+    },
+    "dayjs": {
+      "src": "../../../node_modules/dayjs/dayjs.min.js",
+      "file": "dayjs.js",
+      "fileHash": "508947dc",
+      "needsInterop": true
+    },
+    "dayjs/plugin/localizedFormat": {
+      "src": "../../../node_modules/dayjs/plugin/localizedFormat.js",
+      "file": "dayjs_plugin_localizedFormat.js",
+      "fileHash": "3648fb06",
+      "needsInterop": true
+    },
+    "dayjs/plugin/objectSupport": {
+      "src": "../../../node_modules/dayjs/plugin/objectSupport.js",
+      "file": "dayjs_plugin_objectSupport.js",
+      "fileHash": "5b836eff",
+      "needsInterop": true
+    },
+    "dayjs/plugin/timezone": {
+      "src": "../../../node_modules/dayjs/plugin/timezone.js",
+      "file": "dayjs_plugin_timezone.js",
+      "fileHash": "816654b6",
+      "needsInterop": true
+    },
+    "dayjs/plugin/utc": {
+      "src": "../../../node_modules/dayjs/plugin/utc.js",
+      "file": "dayjs_plugin_utc.js",
+      "fileHash": "3a853706",
+      "needsInterop": true
+    },
+    "@vuepress/shared": {
+      "src": "../../../node_modules/@vuepress/shared/lib/esm/index.js",
+      "file": "@vuepress_shared.js",
+      "fileHash": "6a8e2f3b",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-FWMMROWA": {
+      "file": "chunk-FWMMROWA.js"
+    },
+    "chunk-LDLRMIJB": {
+      "file": "chunk-LDLRMIJB.js"
+    },
+    "chunk-3V6JVANK": {
+      "file": "chunk-3V6JVANK.js"
+    },
+    "chunk-ZU3DIXED": {
+      "file": "chunk-ZU3DIXED.js"
+    }
+  }
+}

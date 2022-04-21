@@ -1,0 +1,792 @@
+---
+title: 数据结构
+icon: float
+category:
+  - algorithm
+tag:
+  - structure
+---
+
+## 链表
+
+### [环形链表 II][00]
+
+::: info Description
+找出链表入环处的节点（有环的话）
+:::
+
+::: details Solution
+先说结论：对于有环的情况，快慢指针会在环内相遇，相遇后拿一个到链表头，俩指针同时同速开始遍历，相遇处即为入环节点
+
+证明：设链表入环前路径长度为 $x$ ，从入环处顺序到快慢指针相遇点路径长度为 $y$ ，环剩余长度为 $z$
+
+设第一次相遇时，快指针走过的路径长度为 $fast$ ，慢指针走过的路径长度为 $slow$
+
+由于不知道 $x$ 与 $y+z$ 的长短关系，不妨假设相遇时快指针已经在环内绕了 $N$ 圈。则有
+
+$$
+\left\{
+	\begin{array}{lr}
+	fast=2\ slow \\
+	fast=x+N(y+z)+y  \\
+	slow=x+y \\
+	\end{array}
+\right.
+$$
+
+其中，相遇时慢指针一定还未在环内走完一圈（可反证）
+
+所以可得 $x=N(y+z)-y$ ，其在第二阶段同速遍历时的语义为：某一指针从头走到入环处时，另一指针恰好从快慢相遇点出发绕环若干圈后再回退距离 $y$ ，即两指针恰好在入环处相遇
+
+也可以将上述等式进一步化为 $x=(N-1)y+Nz\ =(N-1)(y+z)+z$ ，可更清晰地看出语义为从快慢相遇点绕环若干圈后再走 $z$ 长度，也恰好相遇与入环处
+
+```java
+class Solution {
+	public ListNode detectCycle(ListNode head) {
+		if (head == null || head.next == null)
+			return null;
+		ListNode slow = head, fast = head;
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+			if (slow == fast)
+				break;
+		}
+		if (slow == fast) {
+			fast = head;
+			while (fast != slow) {
+				fast = fast.next;
+				slow = slow.next;
+			}
+			return fast;
+		} else
+			return null;
+	}
+}
+```
+
+:::
+
+### [相交链表][01]
+
+::: info Description
+找出两链表开始相交的节点（若不相交则为空）
+:::
+::: details Solution
+两指针同时开始遍历，遍历到结尾后再从另一链表头开始遍历，两指针相等时即为所求
+
+不管是否有公共节点，俩指针最多在遍历完俩链表之时一定会相等（分段求路径和可证）
+
+```java
+class Solution {
+	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+		ListNode a = headA, b = headB;
+		while (a != b) {
+			a = a == null ? headB : a.next;
+			b = b == null ? headA : b.next;
+		}
+		return a;
+	}
+}
+```
+
+:::
+
+### [旋转链表][02]
+
+::: info Description
+将链表向右循环指定次数（每次尾部节点都移到链表头）
+:::
+
+::: details Solution
+实际上就是将链表最后若干个节点整体移到链表头
+
+```java
+class Solution {
+	public ListNode rotateRight(ListNode head, int k) {
+		if (head == null || head.next == null)
+			return head;
+		int len = 0;
+		ListNode front = head, back = head;
+		while (front != null) {
+			front = front.next;
+			++len;
+		}
+		k = k % len;
+
+		front = head;
+		while (k-- > 0)
+			front = front.next;
+		while (front.next != null) {
+			front = front.next;
+			back = back.next;
+		}
+		front.next = head;
+		front = back.next;
+		back.next = null;
+		return front;
+	}
+}
+
+```
+
+:::
+
+### [回文链表][03]
+
+::: info Description
+判断链表是否为回文链表
+:::
+::: details Solution
+先二分链表，再逆序后一链表，最后依次比较
+
+```java
+class Solution {
+	public boolean isPalindrome(ListNode head) {
+		if (head == null || head.next == null)
+			return true;
+		// locate half node
+		ListNode fast = head, slow = head;
+		while (fast != null && fast.next != null) {
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+		// 若节点为奇数，则需将中间单独节点划分到前一链表中，
+		// 避免反转后一链表时将其当作头节点
+		if (fast != null)
+			slow = slow.next;
+		// cut 复用 fast
+		fast = head;
+		while (fast.next != slow)
+			fast = fast.next;
+		fast.next = null;
+		// reverse begain slow
+		ListNode newHead = null;
+		while (slow != null) {
+			ListNode t = slow.next;
+			slow.next = newHead;
+			newHead = slow;
+			slow = t;
+		}
+		// compare 后一链表不长于前一链表
+		while (newHead != null) {
+			if (head.val != newHead.val)
+				return false;
+			head = head.next;
+			newHead = newHead.next;
+		}
+		return true;
+	}
+}
+```
+
+:::
+
+### [合并 K 个升序链表][04]
+
+::: details Solution
+用定制的优先队列确定接下来接哪个链表头
+
+```java
+class Solution {
+	public ListNode mergeKLists(ListNode[] lists) {
+		if (lists == null || lists.length == 0)
+			return null;
+		PriorityQueue<Integer> que = new PriorityQueue<>(new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return lists[o1].val - lists[o2].val;
+			}
+		});
+		for (int i = 0; i < lists.length; i++)
+			if (lists[i] != null)
+				que.add(i);
+		ListNode head = new ListNode(), tail = head;
+		while (!que.isEmpty()) {
+			int idx = que.poll();
+			tail.next = lists[idx];
+			lists[idx] = lists[idx].next;
+			tail = tail.next;
+			tail.next = null;
+			if (lists[idx] != null)
+				que.add(idx);
+		}
+		return head.next;
+	}
+}
+```
+
+:::
+
+## 队列
+
+### [滑动窗口最大值][05]
+
+::: info Description
+固定大小的滑动窗口遍历数组，求次迭代时窗口内的最大值
+:::
+::: details Solution1
+维护大顶堆的优先队列，队头元素即为最大值
+
+为确保已经不在窗口的值被丢弃，需要同时记录值的索引
+
+```java
+class Solution {
+	public int[] maxSlidingWindow(int[] nums, int k) {
+		int[] res = new int[nums.length - k + 1];
+		PriorityQueue<int[]> que = new PriorityQueue<>(new Comparator<int[]>() {
+			@Override
+			public int compare(int[] o1, int[] o2) {
+				return o2[0] - o1[0];
+			}
+		});
+		for (int i = 0; i < k; ++i)
+			que.offer(new int[] { nums[i], i });
+		res[0] = que.peek()[0];
+		for (int i = k; i < nums.length; ++i) {
+			que.offer(new int[] { nums[i], i });
+			while (!que.isEmpty() && que.peek()[1] <= i - k)
+				que.poll();
+			res[i - k + 1] = que.peek()[0];
+		}
+		return res;
+	}
+}
+```
+
+:::
+::: details Solution2
+依照上述思想进行优化，使用记录值的索引的单调队列替代优先队列
+
+遍历数组时维护索引对应的值单调递减的队列，则队头索引对应最大值
+
+考虑滑动窗口的限制，需要在入队并维护单调队列之后，并且在取最大值记录答案之前，将队头所有不在滑动窗口中的索引都去除
+
+```java
+class Solution {
+	public int[] maxSlidingWindow(int[] nums, int k) {
+		Deque<Integer> deque = new LinkedList<Integer>();
+		for (int i = 0; i < k; ++i) {
+			while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[i])
+				deque.pollLast();
+			deque.offerLast(i);
+		}
+		int[] ans = new int[nums.length - k + 1];
+		ans[0] = nums[deque.peekFirst()];
+		for (int i = k; i < nums.length; ++i) {
+			while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[i])
+				deque.pollLast();
+			deque.offerLast(i);
+			while (deque.peekFirst() <= i - k)
+				deque.pollFirst();
+			ans[i - k + 1] = nums[deque.peekFirst()];
+		}
+		return ans;
+	}
+}
+```
+
+:::
+
+## 栈
+
+### [最长有效括号][06]
+
+::: info Description
+求只包含`(`和`)`的字符串中最长有效（格式正确且连续）括号子串的长度
+:::
+::: details Solution1
+参考用栈进行基础版括号匹配的做法，用栈维护待匹配的`(`的索引
+
+考虑到边界条件的处理，特殊地，令栈底为最后未匹配成功的`)`的索引（初始时先入栈虚拟索引-1 以确保始终合规）
+
+在遍历过程中更新以当前`)`为结尾（如果是的话）的最长有效子串长度：
+
+- 若为`(`，则索引入栈
+- 若为`)`，先将栈顶元素当作`(`弹出表示匹配，弹出后：
+  - 若栈为空，说明弹出的是前一个未被匹配的`)`索引，当前`)`匹配失败，索引入栈替代更新前一个未被匹配的`)`索引
+  - 若栈非空，则当前`)`匹配成功，更新最长有效子串长度（即当前索引减去栈顶索引）
+
+```java
+class Solution {
+	public int longestValidParentheses(String s) {
+		Stack<Integer> stack = new Stack<>();
+		stack.push(-1);
+		int max = 0;
+		for (int i = 0; i < s.length(); ++i) {
+			char c = s.charAt(i);
+			if (c == '(')
+				stack.push(i);
+			else {
+				stack.pop();
+				if (stack.isEmpty())
+					stack.push(i);
+				else
+					max = Math.max(max, i - stack.peek());
+			}
+		}
+		return max;
+	}
+}
+
+```
+
+:::
+::: details Solution2
+令 $dp[i]$ 表示以 $i$ 为止最长有效子串长度，显然若 $s[i]='('$ 则 $dp[i]=0$ ，对于 $s[i]=')'$ 的情况，可分为两种：
+
+- 若 $s[i-1]='('$ ，则有效子串形如`...()`，显然 $dp[i]=dp[i-2]+2$
+- 若 $s[i-1]=')'$ ，则有效子串形如`...))`，与 $i$ 匹配的索引为 $i-dp[i-1]-1$（如果存在的话），故仅当 $s[i-dp[i-1]-1]='('$ 时 $i$ 才有效，此时有 $dp[i]=dp[i-1]+2$ ，再考虑到匹配到`(`的左侧可能还存在连续的有效子串，故最终应为 $dp[i]=dp[i-1]+2+dp[i-dp[i-1]-2]$
+
+```java
+class Solution {
+	public int longestValidParentheses(String s) {
+		int max = 0;
+		int[] dp = new int[s.length()];
+		for (int i = 1; i < s.length(); ++i) {
+			if (s.charAt(i) == ')')
+				if (s.charAt(i - 1) == '(')
+					dp[i] = (i > 1 ? dp[i - 2] : 0) + 2;
+				else if (i > dp[i - 1] && s.charAt(i - dp[i - 1] - 1) == '(')
+					dp[i] = dp[i - 1] + 2 + ((i - dp[i - 1] >= 2) ? dp[i - dp[i - 1] - 2] : 0);
+			max = Math.max(max, dp[i]);
+		}
+		return max;
+	}
+}
+```
+
+:::
+::: details Solution3
+在遍历字符串时用变量 $left$ 和 $right$ 分别记录`(`和`)`的数量
+
+从左往右遍历时，只考虑`)`不少于`(`的情况，则：
+
+- 若 $left=right$ ，则恰好匹配，更新最大有效子串长度
+- 若 $left<right$ ，则表示已经无法匹配，将两变量都清零重新计数
+
+再从右往左遍历，此时只考虑`(`不少于`)`的情况，变量更新与上面相反
+
+通过正反两次遍历涵盖所有情况求得答案
+
+```java
+class Solution {
+	public int longestValidParentheses(String s) {
+		int left = 0, right = 0, max = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == '(')
+				left++;
+			else
+				right++;
+			if (left == right)
+				max = Math.max(max, 2 * right);
+			else if (right > left)
+				left = right = 0;
+		}
+		left = right = 0;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			if (s.charAt(i) == '(')
+				left++;
+			else
+				right++;
+			if (left == right)
+				max = Math.max(max, 2 * left);
+			else if (left > right)
+				left = right = 0;
+		}
+		return max;
+	}
+}
+```
+
+:::
+
+### [字符串解码][07]
+
+::: info Description
+已编码字符串的编码规则为若干`k[string]`，表示`string`重复`k`次（`k`为正整数）
+
+输入保证合规，但允许嵌套编码
+:::
+::: details Solution1
+用俩栈分别存重复次数及相应的子串
+
+遍历字符时维护当前解码串，当前子串结束时将其重复指定次数再拼接到之前的子串后
+
+```java
+class Solution {
+	public String decodeString(String s) {
+		StringBuilder ans = new StringBuilder();
+		Stack<Integer> times = new Stack<>();
+		Stack<StringBuilder> ansStack = new Stack<>();
+		int time = 0;
+		for (char c : s.toCharArray()) {
+			if (Character.isDigit(c))
+				time = time * 10 + c - '0';
+			else if (c == '[') {
+				ansStack.add(ans);
+				times.add(time);
+				ans = new StringBuilder();
+				time = 0;
+			} else if (Character.isLetter(c)) {
+				ans.append(c);
+			} else {
+				StringBuilder tmp = ansStack.pop();
+				int t = times.pop();
+				while (t-- > 0)
+					tmp.append(ans);
+				ans = tmp;
+			}
+		}
+		return ans.toString();
+	}
+}
+```
+
+:::
+::: details Solution2
+递归隐式用栈，从前往后处理时可分为两种情况：
+
+- 若当前为字母，则解析结果为当前字母加上后续递归解析的结果
+- 若当前为数字开头，则解析之，跳过`[`后递归解析`string`，再跳过`]`后将其重复要求次数获得本段解码结果，解析结果为本段结果加上后续解析结果
+
+```java
+class Solution {
+	private int idx = 0;
+	private String str;
+
+	public String decodeString(String s) {
+		str = s;
+		return getString();
+	}
+
+	private String getString() {
+		if (idx == str.length() || str.charAt(idx) == ']')
+			return "";
+		char ch = str.charAt(idx);
+		if (Character.isDigit(ch)) { // '1 ~ 9'
+			StringBuilder res = new StringBuilder();
+			int repeat = getDigit();
+			++idx;// skip '['
+			String tmp = getString();
+			++idx;// skip ']'
+			while (repeat-- > 0)
+				res.append(tmp);
+			return res.toString() + getString();
+		} else { // 'a ~ z'
+			++idx;
+			return ch + getString();
+		}
+	}
+
+	private int getDigit() {
+		int res = 0;
+		for (; idx < str.length() && Character.isDigit(str.charAt(idx)); ++idx)
+			res = res * 10 + (str.charAt(idx) - '0');
+		return res;
+	}
+}
+```
+
+:::
+
+### [二叉树展开为链表][08]
+
+::: info Description
+将二叉树节点变为只存在右孩子的先序链表（所有节点左孩子都为空）
+:::
+::: details Solution1
+直接先序遍历并存储各节点，再依次修改其左右孩子形成链表
+
+```java
+class Solution {
+	private Queue<TreeNode> que = new LinkedList<>();
+
+	public void flatten(TreeNode root) {
+		fo(root);
+		TreeNode head = new TreeNode();
+		TreeNode cur = head;
+		while (!que.isEmpty()) {
+			cur.right = que.poll();
+			cur = cur.right;
+			cur.left = null;
+		}
+		cur.right = null;
+	}
+
+	private void fo(TreeNode root) {
+		if (root != null) {
+			que.offer(root);
+			fo(root.left);
+			fo(root.right);
+		}
+	}
+}
+```
+
+:::
+
+::: details Solution2
+实际上就是迭代时将右孩子变为左子树最右下叶节点的右孩子，再将左孩子变为右孩子
+
+此法在迭代到每个需要处理的节点时，需要遍历找出该节点左子树的最右下叶节点，看起来貌似更耗时，但实际上所有遍历过的节点都会在本次迭代立刻成为最终右链表的一部分，并且不会在迭代时搜索左子树时被再次遍历到，最终总体来看每个节点只需被遍历两次
+
+```java
+class Solution {
+	public void flatten(TreeNode root) {
+		TreeNode cur = root;
+		while (cur != null) {
+			if (cur.left != null) {
+				TreeNode next = cur.left;
+				TreeNode pre = next;
+				while (pre.right != null) {
+					pre = pre.right;
+				}
+				pre.right = cur.right;
+				cur.right = next;
+				cur.left = null;
+			}
+			cur = cur.right;
+		}
+	}
+}
+```
+
+:::
+
+### [每日温度][09]
+
+::: info Description
+给定代表每日温度的数组，要求找出对于每一天来说，多少天后气温将会升高（若后续没有更高气温则为 0）
+:::
+::: details Solution
+实际上就是对于每个数，找出后续首个更大的数的位置
+
+维护递减的单调栈来缓存等待更高气温的日子，在找到更高气温的日子时，将一部分找到答案的日子出栈时即可得出答案
+
+```java
+class Solution {
+	public int[] dailyTemperatures(int[] temperatures) {
+		Stack<Integer> idxes = new Stack<>(); // 存索引
+		int[] res = new int[temperatures.length];
+		for (int cur = 0; cur < res.length; ++cur) {
+			while (!idxes.isEmpty() && temperatures[idxes.peek()] < temperatures[cur]) {
+				int pre = idxes.pop();
+				res[pre] = cur - pre;
+			}
+			idxes.push(cur);
+		}
+		return res;
+	}
+}
+```
+
+:::
+
+### [下一个更大元素 I][0A]
+
+::: info Description
+给定两无重复元素的无序数组 $nums1$ 和 $nums2$，且有 $nums1 \in nums2$，找出 `nums1` 中每个元素在 $nums2$ 中右侧首个大于它的元素的索引（若右侧不存在更大的则为-1）
+:::
+::: details Solution
+首先遍历 $nums2$ ，利用递减单调栈得出每个元素右侧首个更大元素的索引，将其缓存下来，再遍历 $nums1$ 查缓存得出所有答案
+
+```java
+class Solution {
+	public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		Stack<Integer> stk = new Stack<>();
+		for (int i = nums2.length - 1; i >= 0; --i) {
+			while (!stk.isEmpty() && nums2[i] >= stk.peek())
+				stk.pop();
+			map.put(nums2[i], stk.isEmpty() ? -1 : stk.peek());
+			stk.push(nums2[i]);
+		}
+		int[] res = new int[nums1.length];
+		for (int i = 0; i < nums1.length; ++i)
+			res[i] = map.get(nums1[i]);
+		return res;
+	}
+}
+```
+
+:::
+
+### [最短无序连续子数组][0B]
+
+::: info Description
+给定部分无序的升序数组，求其中最短无序连续子数组的长度
+:::
+::: details Solution1
+令左侧有序范围为 $A$ ，最短无序范围为 $B$ ，右侧有序范围为 $C$ ，则有
+
+$$
+\left\{
+	\begin{array}{lr}
+	max(A) \leq min(B \cup C) \\
+	min(C) \geq max(A \cup B)  \\
+	\end{array}
+\right.
+$$
+
+所以可分两次遍历分别确定无序数组的左右边界，以从左向右遍历为例，遍历过程中维护当前遍历过的最大值，不断令小于最大值的值为右边界来进行必要的扩展。注意求的是最短连续子数组，故必须严格小于才能扩展。从右往左类似，可确定左边界。实现的时候可以一次遍历同时更新确定
+
+```java
+class Solution {
+	public int findUnsortedSubarray(int[] nums) {
+		int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+		int left = -1, right = -1, n = nums.length;
+		for (int i = 0; i < n; ++i) {
+			if (max > nums[i])
+				right = i;
+			else
+				max = nums[i];
+			if (min < nums[n - i - 1])
+				left = n - i - 1;
+			else
+				min = nums[n - i - 1];
+		}
+		return right == -1 ? 0 : right - left + 1;
+	}
+}
+```
+
+:::
+::: details Solution2
+在遍历时维护递增的单调栈，对于存在非单调区间的数组，其需要重排的区间范围显然与该区间的最值有关，所以需要同时记录该区间的最值
+
+如何确定某值属于无序区间呢？在遍历到递减元素时需要出栈部分元素以维持栈的单调性，如果某个值被出栈了，则说明它一定不小于前后元素，显然它一定属于无序区间，所以我们应该记录已弹出的最大值，即为无序区间的最大值
+
+再继续想整个出栈的过程，各元素由大到小出栈直到栈顶元素小于等于当前递减元素为止，那么至少所有出栈的元素都需要重新排列（即都属于无序区间），所以我们可以通过出栈来更新无序区间的左边界，由于可以直接更新左边界，显然我们不需要记录无序区间的最小值
+
+在继续向右遍历的过程中，不断更新的已弹出的最大值可以帮我们确定无序区间的右边界，若当前值小于无序区间最大值，那必属于当前已探明的无序区间，可以借此不断扩展无序区间的右边界
+
+```java
+class Solution {
+	public int findUnsortedSubarray(int[] nums) {
+		Deque<Integer> stk = new ArrayDeque<>();
+		int popMax = Integer.MIN_VALUE;
+		int res = 0, left = nums.length;
+		for (int i = 0; i < nums.length; ++i) {
+			while (!stk.isEmpty() && nums[stk.peek()] > nums[i]) {
+				left = Math.min(left, stk.peek());
+				popMax = Math.max(popMax, nums[stk.peek()]);
+				stk.pop();
+			}
+			stk.push(i);
+			if (popMax > nums[i])
+				res = i - left + 1;
+		}
+		return res;
+	}
+}
+```
+
+:::
+
+### 接雨水
+
+::: info Description
+在二维空间中，给定各索引位置柱子高度，求所有柱子形成的凹坑能接到雨水的总量
+:::
+
+::: details Solution1
+只有形成了完整的凹坑才能接住水，所以一个凹坑至少需要左中右三根柱子支持，所以应该在可能形成凹坑右边时来确认装水量
+
+遍历时维护索引对应高度递减的单调栈，当遍历到递增元素时可能能形成凹坑，若此时栈内仅有一个元素则无法形成凹坑，在栈内不止一个元素的情况下则形成了凹坑，将栈内对应高度小于（等于时也装不了水）递增元素的元素依次出栈，出栈时栈顶和紧接栈顶两两考虑再联合当前递增元素，则可以计算出此凹坑部分接水量
+
+```java
+class Solution {
+	public int trap(int[] height) {
+		Stack<Integer> stk = new Stack<>();
+		int res = 0;
+		for (int i = 0; i < height.length; ++i) {
+			while (!stk.isEmpty() && height[stk.peek()] < height[i]) {
+				int top = stk.pop();
+				if (stk.isEmpty())
+					break;
+				int left = stk.peek();
+				res += (i - left - 1) * (Math.min(height[i], height[left]) - height[top]);
+			}
+			stk.push(i);
+		}
+		return res;
+	}
+}
+```
+
+:::
+::: details Solution2
+某一柱子作为凹坑底能接的雨水量取决于其两侧（不一定紧挨着）最高柱子的较矮值，故可以先求出各柱子两侧最高柱子的高度，再逐一计算各柱子接水量
+
+具体实现是分两次扫描分别得到各柱子两侧最高柱子高度，以从左到右扫描为例，用动态规划记录各柱子左侧（含本身）最高柱子高度，初始 $leftMax[0]=height[0]$ ，后续有 $leftMax[i]=max(leftMax[i-1], height[i])$ ，从右向左类似
+
+两次扫描后再遍历计算各柱子接水量为 $min⁡(leftMax[i], rightMax[i])−height[i]$
+
+```java
+class Solution {
+	public int trap(int[] height) {
+		int[] leftMax = new int[height.length];
+		leftMax[0] = height[0];
+		for (int i = 1; i < height.length; ++i)
+			leftMax[i] = Math.max(leftMax[i - 1], height[i]);
+		int[] rightMax = new int[height.length];
+		rightMax[height.length - 1] = height[height.length - 1];
+		for (int i = height.length - 2; i >= 0; --i)
+			rightMax[i] = Math.max(rightMax[i + 1], height[i]);
+		int ans = 0;
+		for (int i = 0; i < height.length; ++i)
+			ans += Math.min(leftMax[i], rightMax[i]) - height[i];
+		return ans;
+	}
+}
+```
+
+:::
+::: details Solution3
+按照上述思路可利用双指针优化掉存储空间。考虑到存储左侧最高柱高的数组是从左向右扫描，而另一数组恰好相反，可用两指针和两变量替代数组
+
+维护两个指针 $left$ 和 $right$ 以及两个变量 $leftMax$ 和 $rightMax$ ，两指针由两端开始异步相向移动指向当前作为凹坑底部接水的柱子，而两变量则分别记录各自指针扫过的最高柱高
+
+在两指针相向遍历时，先进行两变量的更新，然后判断：
+
+- 若 $height[left]<height[right]$ ，则必有 $leftMax<rightMax$ ，得出此柱子接水量为 $leftMax−height[left]$ ，并将 $left$ 右移
+- 若 $height[left]\geq height[right]$ ，则必有 $leftMax\geq rightMax$ ，得出此柱子接水量为 $rightMax−height[right]$ ，并将 $right$ 左移
+
+注意，此处两指针所指柱子的高度关系与两变量的大小关系严格一致，是因为到底哪个指针能继续移动是由所指柱子高度关系决定的
+
+```java
+class Solution {
+	public int trap(int[] height) {
+		int left = 0, right = height.length - 1;
+		int leftMax = height[left], rightMax = height[right];
+		int res = 0;
+		while (left < right) {
+			if (height[left] < height[right]) {
+				res += leftMax - height[left++];
+				leftMax = Math.max(leftMax, height[left]);
+			} else {
+				res += rightMax - height[right--];
+				rightMax = Math.max(rightMax, height[right]);
+			}
+		}
+		return res;
+	}
+}
+```
+
+:::
+<!-- ------------------------------------------------------- -->
+[00]:https://leetcode-cn.com/problems/linked-list-cycle-ii/
+[01]:https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
+[02]:https://leetcode-cn.com/problems/rotate-list/
+[03]:https://leetcode-cn.com/problems/palindrome-linked-list/
+[04]:https://leetcode-cn.com/problems/merge-k-sorted-lists/
+[05]:https://leetcode-cn.com/problems/sliding-window-maximum/
+[06]:https://leetcode-cn.com/problems/longest-valid-parentheses/
+[07]:https://leetcode-cn.com/problems/decode-string/
+[08]:https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/
+[09]:https://leetcode-cn.com/problems/daily-temperatures/
+[0A]:https://leetcode-cn.com/problems/next-greater-element-i/
+[0B]:https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray/
+[0C]:https://leetcode-cn.com/problems/trapping-rain-water/
