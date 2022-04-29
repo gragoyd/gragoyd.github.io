@@ -776,6 +776,77 @@ class Solution {
 ```
 
 :::
+
+### [柱状图中最大的矩形][0D]
+
+::: info Description
+给定各柱状图各位置高度，求能拼成最大矩形的面积
+:::
+::: details Solution1
+聚焦导致拼凑成矩形面积变小的直观原因，是柱状图某根柱子向两端延伸拼凑矩形时新拼入的柱子变矮了，即对于各种拼接矩形来说，一定包含某根柱子的面积最大的矩形取决于其向两端延伸多少后的新柱子才会变矮
+
+可以分两次遍历，求出各柱子往左和右延伸时到哪的柱子会变矮。以往右为例，遍历时维护递增的单调栈以找出各柱子左侧首个变矮的柱子，反之类似
+
+最后遍历各柱子求出包含其能拼成最大矩形的面积的最大值
+
+考虑到计算面积时索引相减的问题，将两侧不存在变矮柱子的情况进行符合计算的特殊值填充
+
+```java
+class Solution {
+	public int largestRectangleArea(int[] heights) {
+		Stack<Integer> stk = new Stack<>();
+		int[] left = new int[heights.length];
+		int[] right = new int[heights.length];
+		for (int i = 0; i < heights.length; ++i) {
+			while (!stk.isEmpty() && heights[stk.peek()] >= heights[i])
+				stk.pop();
+			left[i] = stk.isEmpty() ? -1 : stk.peek();
+			stk.push(i);
+		}
+		stk.clear();
+		for (int i = heights.length - 1; i >= 0; --i) {
+			while (!stk.isEmpty() && heights[stk.peek()] >= heights[i])
+				stk.pop();
+			right[i] = stk.isEmpty() ? heights.length : stk.peek();
+			stk.push(i);
+		}
+		int res = 0;
+		for (int i = 0; i < heights.length; ++i)
+			res = Math.max(res, heights[i] * (right[i] - left[i] - 1));
+		return res;
+	}
+}
+```
+
+:::
+::: details Solution2
+按照上述思路可以发现，从左往右遍历时，接连被出栈的柱子肯定是由大到小但都不小于当前柱子的，这恰好可以说明出栈的那些柱子右侧首个变矮的柱子都是当前柱子，故可以一次遍历同时得到两侧信息
+
+由于右侧信息是在出栈时才能收集到，考虑遍历完后栈内剩余柱子，显然它们右侧不存在首个变矮的柱子
+
+```java
+class Solution{
+	public int largestRectangleArea(int[] heights) {
+		Stack<Integer> stk = new Stack<>();
+		int[] left = new int[heights.length];
+		int[] right = new int[heights.length];
+		for (int i = 0; i < heights.length; ++i) {
+			while (!stk.isEmpty() && heights[stk.peek()] >= heights[i])
+				right[stk.pop()] = i;
+			left[i] = stk.isEmpty() ? -1 : stk.peek();
+			stk.push(i);
+		}
+		while (!stk.isEmpty())
+			right[stk.pop()] = heights.length;
+		int res = 0;
+		for (int i = 0; i < heights.length; ++i)
+			res = Math.max(res, heights[i] * (right[i] - left[i] - 1));
+		return res;
+	}
+}
+```
+
+:::
 <!-- ------------------------------------------------------- -->
 [00]:https://leetcode-cn.com/problems/linked-list-cycle-ii/
 [01]:https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
@@ -790,3 +861,4 @@ class Solution {
 [0A]:https://leetcode-cn.com/problems/next-greater-element-i/
 [0B]:https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray/
 [0C]:https://leetcode-cn.com/problems/trapping-rain-water/
+[0D]:https://leetcode-cn.com/problems/largest-rectangle-in-histogram/

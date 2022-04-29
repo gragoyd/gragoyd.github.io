@@ -156,15 +156,33 @@ export const data = {
           "title": "接雨水",
           "slug": "接雨水",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "柱状图中最大的矩形",
+          "slug": "柱状图中最大的矩形",
+          "children": []
         }
       ]
     }
   ],
-  "git": {},
   "readingTime": {
-    "minutes": 15.58,
-    "words": 4675
+    "minutes": 17.45,
+    "words": 5234
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/structure.html",
   "filePathRelative": "docs/algorithm/structure.md"
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }

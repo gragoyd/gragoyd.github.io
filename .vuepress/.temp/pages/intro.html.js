@@ -6,7 +6,7 @@ export const data = {
   "frontmatter": {
     "icon": "info",
     "article": false,
-    "summary": "Hi 我是一个被现实赶着走的小子 Gitee 网站框架 vuepress-theme-hope 本站开发命令记录 编写时开本地服务器实时查看修改效果：npm run docs:dev【若修改没反应总是读缓存就重启网站服务器】 发布：先yarn docs:build在./vuepress/dist目录下生成最终网页，再将该目录更新到 GitHub 仓库",
+    "summary": "Hi 我是一个被现实赶着走的小子 Gitee 网站框架 vuepress-theme-hope 本站开发命令记录 编写时开本地服务器实时查看修改效果：npm run docs:dev【若修改没反应总是读缓存就重启网站服务器】 发布： ; 实际上每次在该目录生成时都会先把目录清空，所以每次同步该目录是完全不现实的; 直接利用 GitHub 的 Action，p",
     "head": [
       [
         "meta",
@@ -54,11 +54,23 @@ export const data = {
       "children": []
     }
   ],
-  "git": {},
   "readingTime": {
-    "minutes": 0.37,
-    "words": 110
+    "minutes": 0.55,
+    "words": 165
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/intro.html",
   "filePathRelative": "intro.md"
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }

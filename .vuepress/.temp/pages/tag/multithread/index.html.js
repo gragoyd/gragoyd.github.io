@@ -1,13 +1,13 @@
 export const data = {
-  "key": "v-b313a528",
-  "path": "/tag/dfs/",
-  "title": "DFS 标签",
+  "key": "v-10ed8d4c",
+  "path": "/tag/multithread/",
+  "title": "multithread 标签",
   "lang": "zh-CN",
   "frontmatter": {
-    "title": "DFS 标签",
+    "title": "multithread 标签",
     "blog": {
       "type": "category",
-      "name": "DFS",
+      "name": "multithread",
       "key": "tag"
     },
     "layout": "Blog",
@@ -17,7 +17,7 @@ export const data = {
         "meta",
         {
           "property": "og:url",
-          "content": "https://gragoyd.github.io/tag/dfs/"
+          "content": "https://gragoyd.github.io/tag/multithread/"
         }
       ],
       [
@@ -31,7 +31,7 @@ export const data = {
         "meta",
         {
           "property": "og:title",
-          "content": "DFS 标签"
+          "content": "multithread 标签"
         }
       ],
       [
@@ -56,7 +56,7 @@ export const data = {
     "minutes": 0,
     "words": 0
   },
-  "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/tag/dfs/",
+  "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/tag/multithread/",
   "filePathRelative": null
 }
 

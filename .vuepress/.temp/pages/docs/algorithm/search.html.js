@@ -73,13 +73,49 @@ export const data = {
       "title": "01 矩阵",
       "slug": "_01-矩阵",
       "children": []
+    },
+    {
+      "level": 3,
+      "title": "打开转盘锁",
+      "slug": "打开转盘锁",
+      "children": []
+    },
+    {
+      "level": 3,
+      "title": "太平洋大西洋水流问题",
+      "slug": "太平洋大西洋水流问题",
+      "children": []
+    },
+    {
+      "level": 3,
+      "title": "二进制矩阵中的最短路径",
+      "slug": "二进制矩阵中的最短路径",
+      "children": []
+    },
+    {
+      "level": 3,
+      "title": "判断二分图",
+      "slug": "判断二分图",
+      "children": []
     }
   ],
-  "git": {},
   "readingTime": {
-    "minutes": 1.52,
-    "words": 455
+    "minutes": 6.4,
+    "words": 1921
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/search.html",
   "filePathRelative": "docs/algorithm/search.md"
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }

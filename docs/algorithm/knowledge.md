@@ -356,6 +356,248 @@ class Solution {
 }
 ```
 
+### 拓扑排序
+
+有向图的拓扑排序是指满足上游节点一定排在下游节点前面的一种全节点排列，并且有：
+
+- 若有向图中存在环，则其不存在拓扑排序（环中节点顺序亦先亦后，与排序中确定的先后矛盾）
+- 若为有向无环图，则其拓扑排序可能不止一种（如无边图的任意节点排列都是拓扑排序）
+
+所以对于有先后制约关系的遍历搜索可以套用拓扑排序模版，用 DFS 或 BFS 都可以实现
+
+#### DFS 拓扑
+
+假设节点有未搜索、搜索中、已完成三种状态，搜索完的节点入栈成为结果的一部分。若某节点的所有下游节点都已搜索完，则此节点可以入栈且满足拓扑排序的要求，在 DFS 情景中就是完成所有下游节点搜索后回溯时即为搜索完成
+
+具体实现时，先由给定的制约关系构建有向图（二维数组），每轮搜索开始时随机取一个未搜索的节点进行搜索。对于当前节点，将其标记为搜索中，对于其所有下游节点：
+
+- 若未搜索，则进入搜索
+- 若搜索中，则图存在环，不存在拓扑排序，终止搜索
+- 若已完成，无需操作
+
+当所有下游节点都搜索完成后，当前节点标记为已完成并入栈，然后回溯
+
+若全过程都不存在环，则最后从栈顶到栈底即为一种拓扑排序（栈可以用带额外指针的数组存）
+
+#### BFS 拓扑
+
+考虑套用 BFS 模版正向生成拓扑排序。若节点的入度为零，则说明其已无上游节点，此类节点都可以先加入排序中进行顺序固定，由于该类节点不再对其下游节点造成后续排序影响，故可将其的所有出边移除（即相应下游节点的入度减一），同时将入度新变为零的节点入队用于下一批搜索，重复搜索直到排序包含所有节点（得到一种拓扑排序）或者剩余节点入度都非零（存在环）
+
+具体实现时先根据给定制约关系构建有向图（二维数组）同时统计各节点的入度，初始将所有入度为零的节点入队，对于队中每一批节点：
+
+- 出队并加入答案
+- 将其所有出边移除（相应下游节点入度减一），将入度新变为零的节点入队
+
+完成搜索后若排序含所有节点则得到一种拓扑排序，否则说明图中存在导致相互入度不为零的节点（有环），不存在拓扑排序
+
+#### 拓扑排序举例
+
+[课程表 II](https://leetcode-cn.com/problems/course-schedule-ii/)：
+给定所有必须得上的课的先修关系，求一种修完所有课的顺序（存在的话）
+
+:::: code-group
+::: code-group-item DFS
+
+```java
+class Solution {
+	private List<List<Integer>> edges = new ArrayList<>();
+	private boolean valid = true;	// 是否无环，用于剪枝和返回答案判定
+	private int[] state;	// 节点状态：0 未搜索，1 搜索中，2 已完成
+	private int[] res;
+	private int idx;
+
+	public int[] findOrder(int numCourses, int[][] prerequisites) {
+		for (int i = 0; i < numCourses; ++i)
+			edges.add(new ArrayList<>());
+		for (int[] info : prerequisites)
+			edges.get(info[1]).add(info[0]);
+		state = new int[numCourses];
+		res = new int[numCourses];
+		idx = numCourses - 1;
+		// 开始若干轮搜索【注意此处需配合 dfs() 同步剪枝，否则出错】
+		for (int i = 0; i < numCourses && valid; ++i)
+			if (state[i] == 0)
+				dfs(i);
+
+		if (valid)
+			return res;
+		else
+			return new int[] {};
+	}
+
+	private void dfs(int u) {
+		state[u] = 1;
+		for (int v : edges.get(u)) {
+			if (state[v] == 0) {
+				dfs(v);
+				if (!valid)		// 剪枝
+					return;
+			} else if (state[v] == 1) {
+				valid = false;
+				return;
+			}	// 下游节点已搜索完成则无需操作
+		}
+		state[u] = 2;
+		res[idx--] = u;
+	}
+}
+```
+
+:::
+::: code-group-item BFS
+
+``` java
+class Solution {
+	public int[] findOrder(int numCourses, int[][] prerequisites) {
+		List<List<Integer>> edges = new ArrayList<>();
+		for (int i = 0; i < numCourses; ++i)
+			edges.add(new ArrayList<>());
+		int[] res = new int[numCourses];
+		int[] inDeg = new int[numCourses];
+		int idx = 0;
+		Queue<Integer> que = new LinkedList<>();
+		for (int[] info : prerequisites) {
+			edges.get(info[1]).add(info[0]);
+			++inDeg[info[0]];
+		}
+		for (int i = 0; i < numCourses; ++i)
+			if (inDeg[i] == 0)
+				que.offer(i);
+		while (!que.isEmpty()) {
+			int u = que.poll();
+			res[idx++] = u;
+			for (int v : edges.get(u)) {
+				--inDeg[v];
+				if (inDeg[v] == 0)
+					que.offer(v);
+			}
+		}
+		if (idx == numCourses)
+			return res;
+		else
+			return new int[] {};
+	}
+}
+```
+
+:::
+::::
+
+### 并查集
+
+并查集构建若干集合的缓存，用于快速查询某元素是否属于某集合，或者是俩元素是否属于同一集合
+
+具体实现是在内部用数组记录节点的父节点，初始时默认各节点独立成集合（父节点都是自己），后续通过更改父节点值来将节点连至父节点（类似用数组存储的链表）。在将两节点合并至同一集合时，先找到代表各自集合的根节点，再将两根节点连接成父子关系，根据连接规则的不同可分为两种：
+
+高度并查集：维护存储各节点的高度（自己和所有子节点的数量）的数组。因为集合高度就是查找集合根节点的最多迭代次数，所以合并原则是令合并后集合的高度最小，即两集合的根节点合并时高度大的为最终根节点，如此可确保合并后集合高度不会大于原有的两集合。若两集合高度一样则随机确立父子关系，但需注意更新最终根节点的高度
+
+重量并查集：维护存储各节点的重量（自己和所有子节点的数量）的数组。合并原则是重量小的集合归入重量大的集合中去，即令小重量根节点成为大重量根节点的子节点。但仅如此的话对主要影响并查集查询速度的集合高度并并无优化，所以在每次迭代查找父节点时都可以顺便进行路径压缩，令起始节点归根（降低其高度），即在每次向根节点迭代的时候不断地更改起始节点的父节点直到根节点。这样一来每个节点查询过后都能成为根节点的直接子节点，而根节点的直接子节点是可以直接找到判定的，所以重量并查集的节点从第二次查询开始会变得非常快
+
+::: warning 关于重量并查集路径压缩的两点注意
+
+- 在迭代过程中更改起始节点的父节点后无需维护初始父节点和依次经过的父节点的重量，因为当前集合在后续合并时只会用到根节点的重量
+- 路径压缩不适用于高度并查集，因为遍历更改后根节点的高度可能会变，需要重新计算
+:::
+:::: code-group
+::: code-group-item 高度并查集
+
+```java
+class UnionFindSet {
+	private int[] parent; // 下标节点的父节点
+	private int[] height; // 下标节点的高
+
+	UnionFindSet(int size) {
+		this.parent = new int[size];
+		this.height = new int[size];
+		for (int i = 0; i < size; ++i) {
+			parent[i] = i;
+			height[i] = 1;
+		}
+	}
+
+	// 一直向上迭代找到 x 所属集合的根节点
+	public int find(int x) {
+		while (parent[x] != x)
+			x = parent[x];
+		return x;
+	}
+
+	// 判断俩元素是否属于同一集合（连接于同一根节点）
+	public boolean isConnected(int x, int y) {
+		return find(x) == find(y);
+	}
+
+	// 将两不同节点联合至同一集合（连接到同一根节点）
+	public void union(int x, int y) {
+		int rx = find(x);
+		int ry = find(y);
+		if (rx != ry){	// 已经在同一集合则无需合并
+			if (height[rx] < height[ry])
+				parent[rx] = ry;
+			else if (height[rx] > height[ry])
+				parent[ry] = rx;
+			else {
+				parent[ry] = rx;
+				++height[rx];
+			}
+		}
+	}
+}
+```
+
+:::
+::: code-group-item 重量并查集
+
+```java
+class UnionFindSet {
+	private int[] parent; // 下标节点的父节点
+	private int[] weight; // 下标节点的重
+
+	UnionFindSet(int size) {
+		this.parent = new int[size];
+		this.weight = new int[size];
+		for (int i = 0; i < size; ++i) {
+			parent[i] = i;
+			weight[i] = 1;
+		}
+	}
+
+	// 一直向上迭代找到 x 所属集合的根节点（最父节点）
+	public int find(int x) {
+		while (parent[x] != x) {
+			parent[x] = parent[parent[x]]; // 路径压缩
+			x = parent[x];
+		}
+		return x;
+	}
+
+	// 判断俩元素是否属于同一集合（连接于同一父节点）
+	public boolean isConnected(int x, int y) {
+		return find(x) == find(y);
+	}
+
+	// 将两不同节点联合至同一集合（连接到同一最父节点）
+	public void union(int x, int y) {
+		int rx = find(x);
+		int ry = find(y);
+		if (rx != ry) { // 已在同一集合则无需合并
+			if (weight[rx] < weight[ry]) {
+				parent[rx] = ry;
+				weight[ry] += weight[rx];
+			} else {
+				parent[ry] = rx;
+				weight[rx] += weight[ry];
+			}
+		}
+	}
+}
+
+```
+
+:::
+
+::::
+
 ### mermaid 绘图样例
 
 ```mermaid
@@ -377,3 +619,5 @@ sequenceDiagram
         end
     end
 ```
+
+<!-- ---------------------------------- -->

@@ -1,1 +1,1 @@
-export const sidebarData = {"/docs/algorithm/":["knowledge.md","hash.md","simulation.md","structure.md","search.md"],"/docs/graduation/":["README.md","docker.md","ros&gazebo.md"],"/docs/work/":["README.md","knowlegde.md"]}
+export const sidebarData = {"/docs/graduation/":["README.md","docker.md","ros&gazebo.md"],"/docs/algorithm/":["knowledge.md","hash-multithread.md","simulation.md","structure.md","search.md"],"/docs/work/":["README.md","knowlegde.md"]}

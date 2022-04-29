@@ -114,16 +114,40 @@ export const data = {
     },
     {
       "level": 3,
+      "title": "拓扑排序",
+      "slug": "拓扑排序",
+      "children": []
+    },
+    {
+      "level": 3,
+      "title": "并查集",
+      "slug": "并查集",
+      "children": []
+    },
+    {
+      "level": 3,
       "title": "mermaid 绘图样例",
       "slug": "mermaid-绘图样例",
       "children": []
     }
   ],
-  "git": {},
   "readingTime": {
-    "minutes": 2.94,
-    "words": 881
+    "minutes": 10.01,
+    "words": 3004
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/knowledge.html",
   "filePathRelative": "docs/algorithm/knowledge.md"
+}
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
 }

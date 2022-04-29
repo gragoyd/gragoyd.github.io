@@ -1,6 +1,6 @@
 export const data = {
-  "key": "v-a09a45e0",
-  "path": "/docs/algorithm/hash.html",
+  "key": "v-55034e1a",
+  "path": "/docs/algorithm/hash-multithread.html",
   "title": "哈希&多线程",
   "lang": "zh-CN",
   "frontmatter": {
@@ -19,7 +19,7 @@ export const data = {
         "meta",
         {
           "property": "og:url",
-          "content": "https://gragoyd.github.io/docs/algorithm/hash.html"
+          "content": "https://gragoyd.github.io/docs/algorithm/hash-multithread.html"
         }
       ],
       [
@@ -109,16 +109,28 @@ export const data = {
           "title": "交替打印 FooBar",
           "slug": "交替打印-foobar",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "交替打印字符串",
+          "slug": "交替打印字符串",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "哲学家进餐",
+          "slug": "哲学家进餐",
+          "children": []
         }
       ]
     }
   ],
   "readingTime": {
-    "minutes": 3.7,
-    "words": 1110
+    "minutes": 6.76,
+    "words": 2029
   },
-  "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/hash.html",
-  "filePathRelative": "docs/algorithm/hash.md"
+  "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/hash-multithread.html",
+  "filePathRelative": "docs/algorithm/hash-multithread.md"
 }
 
 if (import.meta.webpackHot) {

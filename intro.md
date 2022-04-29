@@ -19,6 +19,6 @@ article: false
 
 发布：
 
-- ~先`yarn docs:build`在`./vuepress/dist`目录下生成最终网页，再将该目录更新到 GitHub 仓库~
+- ~~先`yarn docs:build`在`./vuepress/dist`目录下生成最终网页，再将该目录更新到 GitHub 仓库~~
   - 实际上每次在该目录生成时都会先把目录清空，所以每次同步该目录是完全不现实的
 - 直接利用 GitHub 的 Action，push 之后自动在另一分支生成
