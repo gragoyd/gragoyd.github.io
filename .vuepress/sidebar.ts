@@ -4,6 +4,7 @@ export default defineSidebarConfig({
 	"/docs/algorithm/": "structure",
 	"/docs/graduation/": "structure",
 	"/docs/work/": "structure",
+	"/docs/essay/": "structure",
 	"/": [
 		"",
 	],

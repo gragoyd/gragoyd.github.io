@@ -83,11 +83,17 @@ export const data = {
       "title": "翻转单词顺序",
       "slug": "翻转单词顺序",
       "children": []
+    },
+    {
+      "level": 3,
+      "title": "求众数 II",
+      "slug": "求众数-ii",
+      "children": []
     }
   ],
   "readingTime": {
-    "minutes": 2.49,
-    "words": 747
+    "minutes": 3.89,
+    "words": 1168
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/simulation.html",
   "filePathRelative": "docs/algorithm/simulation.md"

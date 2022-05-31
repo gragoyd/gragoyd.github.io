@@ -126,14 +126,26 @@ export const data = {
     },
     {
       "level": 3,
+      "title": "Dijkstra 算法 - 知乎",
+      "slug": "dijkstra-算法-知乎",
+      "children": []
+    },
+    {
+      "level": 3,
       "title": "mermaid 绘图样例",
       "slug": "mermaid-绘图样例",
+      "children": []
+    },
+    {
+      "level": 3,
+      "title": "交换两变量的值",
+      "slug": "交换两变量的值",
       "children": []
     }
   ],
   "readingTime": {
-    "minutes": 10.01,
-    "words": 3004
+    "minutes": 10.29,
+    "words": 3086
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/knowledge.html",
   "filePathRelative": "docs/algorithm/knowledge.md"

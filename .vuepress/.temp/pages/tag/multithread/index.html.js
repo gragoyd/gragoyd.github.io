@@ -1,13 +1,13 @@
 export const data = {
   "key": "v-10ed8d4c",
   "path": "/tag/multithread/",
-  "title": "multithread 标签",
+  "title": "MultiThread 标签",
   "lang": "zh-CN",
   "frontmatter": {
-    "title": "multithread 标签",
+    "title": "MultiThread 标签",
     "blog": {
       "type": "category",
-      "name": "multithread",
+      "name": "MultiThread",
       "key": "tag"
     },
     "layout": "Blog",
@@ -31,7 +31,7 @@ export const data = {
         "meta",
         {
           "property": "og:title",
-          "content": "multithread 标签"
+          "content": "MultiThread 标签"
         }
       ],
       [

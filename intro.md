@@ -11,6 +11,7 @@ article: false
 
 ::: info 网站框架
 [vuepress-theme-hope](https://vuepress-theme-hope.github.io/v2/zh/)
+[框架内置图标支持](https://vuepress-theme-hope.github.io/v2/zh/guide/interface/icon.html#iconfont-%E7%B2%BE%E9%80%89%E5%9B%BE%E6%A0%87)
 :::
 
 ## 本站开发命令记录

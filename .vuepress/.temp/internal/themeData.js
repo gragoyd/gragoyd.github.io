@@ -30,6 +30,7 @@ export const themeData = {
         "/docs/algorithm/": "structure",
         "/docs/graduation/": "structure",
         "/docs/work/": "structure",
+        "/docs/essay/": "structure",
         "/": [
           ""
         ],
@@ -65,6 +66,11 @@ export const themeData = {
           "text": "算法",
           "icon": "ability",
           "link": "/docs/algorithm/knowledge"
+        },
+        {
+          "text": "随笔",
+          "icon": "article",
+          "link": "/docs/essay/"
         },
         {
           "text": "写作示例",

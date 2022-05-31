@@ -6,7 +6,7 @@ export const data = {
   "frontmatter": {
     "title": "说明",
     "article": false,
-    "summary": "说明 此目录下的文章都是关于毕设的",
+    "summary": "说明 此目录下的文章都是关于毕设的 3 个分析问题 1. 数据库内精度换算成几度几厘米单位的，以便后续在机械臂环境中进行估计 2. 分析不同 part 的估计误差和整体的估计误差 3. 分析点云误差对估计的影响",
     "head": [
       [
         "meta",
@@ -46,10 +46,24 @@ export const data = {
     ]
   },
   "excerpt": "",
-  "headers": [],
+  "headers": [
+    {
+      "level": 2,
+      "title": "说明",
+      "slug": "说明",
+      "children": [
+        {
+          "level": 3,
+          "title": "3 个分析问题",
+          "slug": "_3-个分析问题",
+          "children": []
+        }
+      ]
+    }
+  ],
   "readingTime": {
-    "minutes": 0.05,
-    "words": 16
+    "minutes": 0.29,
+    "words": 87
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/graduation/",
   "filePathRelative": "docs/graduation/README.md"

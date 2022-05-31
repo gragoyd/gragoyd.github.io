@@ -1,17 +1,18 @@
 export const data = {
   "key": "v-55034e1a",
   "path": "/docs/algorithm/hash-multithread.html",
-  "title": "哈希&多线程",
+  "title": "哈希&多线程&并查集",
   "lang": "zh-CN",
   "frontmatter": {
-    "title": "哈希&多线程",
+    "title": "哈希&多线程&并查集",
     "icon": "relation",
     "category": [
       "algorithm"
     ],
     "tag": [
-      "hash",
-      "multithread"
+      "Hash",
+      "MultiThread",
+      "UnionFind"
     ],
     "summary": "哈希 [字母异位词分组][00] Description 字母异位词是由重新排列源单词的字母得到的一个新单词，所有源单词中的字母通常恰好只用一次 将字符串数组中的字母异位词组合在一起，如： input: strs = [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"] output: [[\"bat\"],[\"nat\",\"tan",
     "head": [
@@ -33,7 +34,7 @@ export const data = {
         "meta",
         {
           "property": "og:title",
-          "content": "哈希&多线程"
+          "content": "哈希&多线程&并查集"
         }
       ],
       [
@@ -54,14 +55,21 @@ export const data = {
         "meta",
         {
           "property": "article:tag",
-          "content": "hash"
+          "content": "Hash"
         }
       ],
       [
         "meta",
         {
           "property": "article:tag",
-          "content": "multithread"
+          "content": "MultiThread"
+        }
+      ],
+      [
+        "meta",
+        {
+          "property": "article:tag",
+          "content": "UnionFind"
         }
       ]
     ]
@@ -123,11 +131,30 @@ export const data = {
           "children": []
         }
       ]
+    },
+    {
+      "level": 2,
+      "title": "并查集",
+      "slug": "并查集",
+      "children": [
+        {
+          "level": 3,
+          "title": "冗余连接",
+          "slug": "冗余连接",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "除法求值",
+          "slug": "除法求值",
+          "children": []
+        }
+      ]
     }
   ],
   "readingTime": {
-    "minutes": 6.76,
-    "words": 2029
+    "minutes": 9.17,
+    "words": 2751
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/hash-multithread.html",
   "filePathRelative": "docs/algorithm/hash-multithread.md"

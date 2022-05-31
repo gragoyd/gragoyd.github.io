@@ -1,13 +1,13 @@
 export const data = {
   "key": "v-28859f53",
   "path": "/tag/hash/",
-  "title": "hash 标签",
+  "title": "Hash 标签",
   "lang": "zh-CN",
   "frontmatter": {
-    "title": "hash 标签",
+    "title": "Hash 标签",
     "blog": {
       "type": "category",
-      "name": "hash",
+      "name": "Hash",
       "key": "tag"
     },
     "layout": "Blog",
@@ -31,7 +31,7 @@ export const data = {
         "meta",
         {
           "property": "og:title",
-          "content": "hash 标签"
+          "content": "Hash 标签"
         }
       ],
       [

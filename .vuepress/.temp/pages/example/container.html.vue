@@ -113,7 +113,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 一个有 <span class="token code-snippet code keyword">`代码`</span> 和 <span class="token url">[<span class="token content">链接</span>](<span class="token url">#markdown</span>)</span> 的信息容器。
 
 <span class="token code"><span class="token punctuation">```</span><span class="token code-language">js</span>
-<span class="token code-block language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
+<span class="token code-block language-js language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">```</span></span>
 
 :::
@@ -123,7 +123,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 一个有 <span class="token code-snippet code keyword">`代码`</span> 和 <span class="token url">[<span class="token content">链接</span>](<span class="token url">#markdown</span>)</span> 的注释容器。
 
 <span class="token code"><span class="token punctuation">```</span><span class="token code-language">js</span>
-<span class="token code-block language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
+<span class="token code-block language-js language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">```</span></span>
 
 :::
@@ -133,7 +133,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 一个有 <span class="token code-snippet code keyword">`代码`</span> 和 <span class="token url">[<span class="token content">链接</span>](<span class="token url">#markdown</span>)</span> 的提示容器。
 
 <span class="token code"><span class="token punctuation">```</span><span class="token code-language">js</span>
-<span class="token code-block language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
+<span class="token code-block language-js language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">```</span></span>
 
 :::
@@ -143,7 +143,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 一个有 <span class="token code-snippet code keyword">`代码`</span> 和 <span class="token url">[<span class="token content">链接</span>](<span class="token url">#markdown</span>)</span> 的警告容器。
 
 <span class="token code"><span class="token punctuation">```</span><span class="token code-language">js</span>
-<span class="token code-block language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
+<span class="token code-block language-js language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">```</span></span>
 
 :::
@@ -153,7 +153,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 一个有 <span class="token code-snippet code keyword">`代码`</span> 和 <span class="token url">[<span class="token content">链接</span>](<span class="token url">#markdown</span>)</span> 的危险容器。
 
 <span class="token code"><span class="token punctuation">```</span><span class="token code-language">js</span>
-<span class="token code-block language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
+<span class="token code-block language-js language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">```</span></span>
 
 :::
@@ -163,7 +163,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 一个有 <span class="token code-snippet code keyword">`代码`</span> 和 <span class="token url">[<span class="token content">链接</span>](<span class="token url">#markdown</span>)</span> 的详情容器。
 
 <span class="token code"><span class="token punctuation">```</span><span class="token code-language">js</span>
-<span class="token code-block language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
+<span class="token code-block language-js language-js"><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span></span>
 <span class="token punctuation">```</span></span>
 
 :::

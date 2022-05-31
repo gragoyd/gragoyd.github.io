@@ -13,6 +13,9 @@
 <li><a href="https://zhuanlan.zhihu.com/p/344459822" target="_blank" rel="noopener noreferrer">HashMap 为什么线程不安全<ExternalLinkIcon/></a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/148837265" target="_blank" rel="noopener noreferrer">Redis 缓存穿透、缓存击穿、缓存雪崩<ExternalLinkIcon/></a></li>
 <li><a href="https://blog.csdn.net/Me_xuan/article/details/124285425" target="_blank" rel="noopener noreferrer">Redis 持久化<ExternalLinkIcon/></a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/94770324" target="_blank" rel="noopener noreferrer">抽象类与接口<ExternalLinkIcon/></a></li>
+<li><a href="https://www.cnblogs.com/mingyueyy/p/13054296.html" target="_blank" rel="noopener noreferrer">锁升级<ExternalLinkIcon/></a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/61221667" target="_blank" rel="noopener noreferrer">死锁<ExternalLinkIcon/></a></li>
 </ul>
 <!-- -------------------- -->
 </template>

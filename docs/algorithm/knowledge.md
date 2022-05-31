@@ -5,8 +5,6 @@ date: 2022-04-11
 title: 算法讲解
 category:
   - algorithm
-tag:
-  - DFS
 star: true
 ---
 
@@ -562,13 +560,12 @@ class UnionFindSet {
 		}
 	}
 
-	// 一直向上迭代找到 x 所属集合的根节点（最父节点）
+	// 一直向上迭代找到 x 所属集合的根节点
 	public int find(int x) {
-		while (parent[x] != x) {
-			parent[x] = parent[parent[x]]; // 路径压缩
-			x = parent[x];
-		}
-		return x;
+		// 一直更改初始节点的父节点直到变成根节点
+		while (parent[x] != parent[parent[x]])
+			parent[x] = parent[parent[x]];
+		return parent[x];
 	}
 
 	// 判断俩元素是否属于同一集合（连接于同一父节点）
@@ -598,6 +595,8 @@ class UnionFindSet {
 
 ::::
 
+### [Dijkstra 算法 - 知乎][00]
+
 ### mermaid 绘图样例
 
 ```mermaid
@@ -620,4 +619,112 @@ sequenceDiagram
     end
 ```
 
+### 交换两变量的值
+
+```java
+a = a ^ b;	// a1 = a0 ^ b0
+b = a ^ b;	// b1 = a1 ^ b0 = a0 ^ b0 ^ b0 = a0
+a = a ^ b;	// a2 = a1 ^ b1 = a0 ^ b0 ^ a0 = b0
+```
+
+利用异或特性：
+
+- `A ^ A = 0`
+- `A ^ 0 = A`
+- 异或满足结合律
+- 异或满足交换律
+
+### 回溯
+
+#### 适用问题
+
+- 组合问题：若干数字中按⼀定规则找出若干个数的集合
+- 排列问题：若干数字按⼀定规则全排列的不同排列方式数量
+- 切割问题：⼀个字符串按⼀定规则有⼏种切割⽅式
+- ⼦集问题：若干数字的集合⾥有多少符合条件的⼦集
+- 棋盘问题：N 皇后，解数独等等
+
+#### 模版
+
+:::: code-group
+::: code-group-item 总模版
+
+```java
+void backtracking(path, param){
+	if (endCondition) {
+		result.add(path);	// store result
+		return;
+	}
+	for (el : elements) {
+		if (notUseJudge) {	// remove duplication
+			path.add(el);	// deal
+			backtracking(path, param);	// recursion
+			path.remove(el);	// undo deal
+		}
+	}
+}
+```
+
+:::
+::: code-group-item 数据无序哈希表去重
+
+```java
+// 适用于数据无序或者不可重排序将重复值并到一起的情况
+void backtracking(path, param){
+	if (endCondition) {
+		result.add(path);	// store result
+		return;
+	}
+	HashSet<Integer> used = new HashSet<>();
+	for (el : elements) {
+		if (!used.contains(el)) {	// remove duplication
+			path.add(el);	// deal
+			used.add(el);	// mark
+			backtracking(path, param);	// recursion
+			used.remove(el);	// unmark
+			path.remove(el);	// undo deal
+		}
+	}
+}
+```
+
+:::
+::: code-group-item 数据有序条件去重
+
+```java
+// 适用于数据有序或者可重排序将重复值并到一起的情况
+void backtracking(path, start){
+	if (endCondition) {
+		result.add(path);	// store result
+		return;
+	}
+	HashSet<Integer> used = new HashSet<>();
+	for (int i = start; i < nums.length; ++i) {
+		if (start < i && nums[i - 1] != nums[i])	// remove duplication
+			continue;
+		path.add(el);	// deal
+		backtracking(path, start + 1);	// recursion
+		path.remove(el);	// undo deal
+	}
+}
+```
+
+:::
+::::
+
+#### 实现要点
+
+- 添加一条答案路径时必须由当前路径列表新建一个列表来添加，否则每次添加的都是贯穿回溯全过程的唯一的列表指针，最后一无所有
+- 每层是否需要起始索引：
+  - 对于组合问题：
+    - 若在同一集合中求组合，则需起始索引控制各层循环的起始位置
+    - 若是多个互不影响的集合取组合，则无需起始索引
+  - 对于排列问题：每层都是从头开始搜索而无需起始索引，且
+- 是否需要标记数组标记当前层回溯路径中已存在哪些元素：
+  - 若元素可重复使用，则无需标记数组
+  - 若元素仅可使用一次，则需要标记
+- 实际上标记数组已经在功能上包含起始索引了，但起始索引能在下一层遍历选取时，先标记数组一步进行剪枝，进一步减少无效搜索；或者对于有序数组，因为每次下一层搜索都是基于当前层右边起始的，所以起始索引可以完全替代标记数组
+- 若题目仅要求求出不同组合的个数，可考虑用动态规划来做，避免实际模拟每一种组合
+
 <!-- ---------------------------------- -->
+[00]:https://zhuanlan.zhihu.com/p/338414118

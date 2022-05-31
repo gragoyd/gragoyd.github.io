@@ -54,8 +54,8 @@ export const data = {
     }
   ],
   "readingTime": {
-    "minutes": 0.9,
-    "words": 269
+    "minutes": 1,
+    "words": 299
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/work/knowlegde.html",
   "filePathRelative": "docs/work/knowlegde.md"

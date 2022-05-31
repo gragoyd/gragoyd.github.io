@@ -194,8 +194,63 @@ class Solution {
 ```
 
 :::
+
+### [求众数 II][04]
+
+::: info Description
+求非空数组中所有出现次数大于数组长度三分之一的元素
+:::
+::: details Solution
+此类求多数元素的问题考虑用摩尔投票法，其实质就是不同元素对拼消耗，最后多数元素肯定会相应剩下。
+
+例如 $N$ 个元素中求出现次数大于 $N\div k$ 的元素，故先拟定 $k-1$ 个可能存在的候选多数元素【符合条件的最多只可能有 $k-1$ 个】，每次取 $k-1$ 个不同元素进行抵消，最后若有剩下的候选元素，则对每种进行计数核查是否符合要求。
+
+具体实现是设若干候选变量及其相应计数变量，在遍历数组的每个元素时，若当前元素与某个剩余的变量相同（且相应计数非零），则将其计数加一；若与各候选变量都不同，则伺机选取坑位占据，以备接下来的一组抵消，若此时发现无坑位，则说明已凑够一组不同元素，立即进行抵消。遍历完之后若有剩余候选变量，再到原数组中统计其次数是否达标，最终确认答案
+
+```java
+class Solution {
+	public List<Integer> majorityElement(int[] nums) {
+		int r1 = 0, c1 = 0, r2 = 0, c2 = 0;
+		for (int num : nums) {
+			if (c1 > 0 && num == r1)
+				++c1;
+			else if (c2 > 0 && num == r2)
+				++c2;
+			else if (c1 == 0) {
+				r1 = num;
+				++c1;
+			} else if (c2 == 0) {
+				r2 = num;
+				++c2;
+			} else {
+				--c1;
+				--c2;
+			}
+		}
+		List<Integer> res = new ArrayList<>();
+		if (c1 > 0 || c2 > 0) {
+			int n1 = 0, n2 = 0;
+			for (int num : nums) {
+				if (num == r1)
+					++n1;
+				else if (num == r2)
+					++n2;
+			}
+			if (n1 > nums.length / 3)
+				res.add(r1);
+			if (n2 > nums.length / 3)
+				res.add(r2);
+		}
+		return res;
+	}
+}
+```
+
+:::
+
 <!-- ------------------------------------------------------- -->
 [00]:https://leetcode-cn.com/problems/diagonal-traverse/
 [01]:https://leetcode-cn.com/problems/longest-palindromic-substring/
 [02]:https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/
 [03]:https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/
+[04]:https://leetcode.cn/problems/majority-element-ii/

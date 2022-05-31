@@ -129,12 +129,6 @@ export const data = {
         },
         {
           "level": 3,
-          "title": "二叉树展开为链表",
-          "slug": "二叉树展开为链表",
-          "children": []
-        },
-        {
-          "level": 3,
           "title": "每日温度",
           "slug": "每日温度",
           "children": []
@@ -164,11 +158,78 @@ export const data = {
           "children": []
         }
       ]
+    },
+    {
+      "level": 2,
+      "title": "树",
+      "slug": "树",
+      "children": [
+        {
+          "level": 3,
+          "title": "从前序与中序遍历序列构造二叉树",
+          "slug": "从前序与中序遍历序列构造二叉树",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "二叉树的最近公共祖先",
+          "slug": "二叉树的最近公共祖先",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "验证二叉搜索树",
+          "slug": "验证二叉搜索树",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "二叉搜索树中的插入操作",
+          "slug": "二叉搜索树中的插入操作",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "删除二叉搜索树中的节点",
+          "slug": "删除二叉搜索树中的节点",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "二叉树的锯齿形层序遍历",
+          "slug": "二叉树的锯齿形层序遍历",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "填充每个节点的下一个右侧节点指针 II",
+          "slug": "填充每个节点的下一个右侧节点指针-ii",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "二叉树的序列化与反序列化",
+          "slug": "二叉树的序列化与反序列化",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "二叉树展开为链表",
+          "slug": "二叉树展开为链表",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "[][16]",
+          "slug": "_16",
+          "children": []
+        }
+      ]
     }
   ],
   "readingTime": {
-    "minutes": 17.45,
-    "words": 5234
+    "minutes": 24.51,
+    "words": 7352
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/structure.html",
   "filePathRelative": "docs/algorithm/structure.md"

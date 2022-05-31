@@ -17,6 +17,9 @@ title: Java 知识点
 - [HashMap 为什么线程不安全][0C]
 - [Redis 缓存穿透、缓存击穿、缓存雪崩][0D]
 - [Redis 持久化][0E]
+- [抽象类与接口][0F]
+- [锁升级][10]
+- [死锁][11]
 
 <!-- -------------------- -->
 [01]:https://javaguide.cn/java/concurrent/java-thread-pool-summary.html#%E4%B8%89-%E9%87%8D%E8%A6%81-threadpoolexecutor-%E7%B1%BB%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D
@@ -33,3 +36,6 @@ title: Java 知识点
 [0C]:https://zhuanlan.zhihu.com/p/344459822
 [0D]:https://zhuanlan.zhihu.com/p/148837265
 [0E]:https://blog.csdn.net/Me_xuan/article/details/124285425
+[0F]:https://zhuanlan.zhihu.com/p/94770324
+[10]:https://www.cnblogs.com/mingyueyy/p/13054296.html
+[11]:https://zhuanlan.zhihu.com/p/61221667

@@ -490,70 +490,6 @@ class Solution {
 
 :::
 
-### [二叉树展开为链表][08]
-
-::: info Description
-将二叉树节点变为只存在右孩子的先序链表（所有节点左孩子都为空）
-:::
-::: details Solution1
-直接先序遍历并存储各节点，再依次修改其左右孩子形成链表
-
-```java
-class Solution {
-	private Queue<TreeNode> que = new LinkedList<>();
-
-	public void flatten(TreeNode root) {
-		fo(root);
-		TreeNode head = new TreeNode();
-		TreeNode cur = head;
-		while (!que.isEmpty()) {
-			cur.right = que.poll();
-			cur = cur.right;
-			cur.left = null;
-		}
-		cur.right = null;
-	}
-
-	private void fo(TreeNode root) {
-		if (root != null) {
-			que.offer(root);
-			fo(root.left);
-			fo(root.right);
-		}
-	}
-}
-```
-
-:::
-
-::: details Solution2
-实际上就是迭代时将右孩子变为左子树最右下叶节点的右孩子，再将左孩子变为右孩子
-
-此法在迭代到每个需要处理的节点时，需要遍历找出该节点左子树的最右下叶节点，看起来貌似更耗时，但实际上所有遍历过的节点都会在本次迭代立刻成为最终右链表的一部分，并且不会在迭代时搜索左子树时被再次遍历到，最终总体来看每个节点只需被遍历两次
-
-```java
-class Solution {
-	public void flatten(TreeNode root) {
-		TreeNode cur = root;
-		while (cur != null) {
-			if (cur.left != null) {
-				TreeNode next = cur.left;
-				TreeNode pre = next;
-				while (pre.right != null) {
-					pre = pre.right;
-				}
-				pre.right = cur.right;
-				cur.right = next;
-				cur.left = null;
-			}
-			cur = cur.right;
-		}
-	}
-}
-```
-
-:::
-
 ### [每日温度][09]
 
 ::: info Description
@@ -847,6 +783,384 @@ class Solution{
 ```
 
 :::
+
+## 树
+
+### [从前序与中序遍历序列构造二叉树][0E]
+
+::: info Description
+给定二叉树前序遍历与中序遍历节点值（各节点值都不同）的数组，构造该二叉树
+:::
+::: details Solution
+前序遍历结构为`[root, [left sub tree preorder], [right sub tree preorder]]`，中序遍历结构为`[root, [left sub tree inorder], [right sub tree inorder]]`，故对于每一级的每棵树，都可以通过前序遍历的根节点找到其在中序遍历结果内的索引（先构建哈希表加速查询），从而确定左右子树中各有多少节点，进而在前序遍历中继续下一级划分，递归构造二叉树
+
+```java
+class Solution {
+	private int[] preorder;
+	private Map<Integer, Integer> index = new HashMap<>();
+
+	public TreeNode buildTree(int[] preorder, int[] inorder) {
+		this.preorder = preorder;
+		for (int i = 0; i < inorder.length; ++i)
+			index.put(inorder[i], i);
+		return make(0, preorder.length - 1, 0, inorder.length - 1);
+	}
+
+	private TreeNode make(int preLeft, int preRight, int inLeft, int inRight) {
+		if (preLeft > preRight)
+			return null;
+		TreeNode node = new TreeNode(preorder[preLeft]);
+		int inIdx = index.get(node.val); // 根节点在中序遍历的索引
+		node.left = make(preLeft + 1, preLeft + inIdx - inLeft, inLeft, inIdx - 1);
+		node.right = make(preLeft + inIdx - inLeft + 1, preRight, inIdx + 1, inRight);
+		return node;
+	}
+}
+```
+
+:::
+
+### [二叉树的最近公共祖先][0F]
+
+::: info Description
+给定二叉树和其中的两节点，求其最近公共祖先（可以是其本身）
+:::
+::: details Solution
+构造递归函数，每次递归返回该侧子树中某节点的最近公共祖先，由底至上逐级返回：
+
+- 若根节点是某个指定节点，则直接返回根节点（祖先是本身）
+- 若已遍历完或左右都未找到指定节点，则返回空
+- 若指定两节点分别在左右子树，则返回根节点
+- 若两节点都在同一侧，则返回该侧子节点
+
+```java
+class Solution {
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		if (root == null || root == p || root == q)
+			return root;
+		TreeNode l = lowestCommonAncestor(root.left, p, q);
+		TreeNode r = lowestCommonAncestor(root.right, p, q);
+		// nn->n, lr->root, ln->l, nr->r
+		return l == null ? r : r == null ? l : root;
+	}
+}
+```
+
+:::
+
+### [验证二叉搜索树][10]
+
+::: info Description
+判断给定二叉树是否为搜索树【左子树仅含小于当前节点的数，右子树仅含大于当前节点的数，左右子树都是搜索树】
+
+注意：此题的节点数据集的值覆盖所有`int`型
+:::
+::: details Solution
+考虑节点值的范围，用`long`型存储辅助值
+
+一种解法是利用搜索树中序遍历的单调性，在递归或者模拟隐式栈来进行中序遍历时维护上一个节点值，每次检查当前值是否合规，代码略
+
+另一种是递归思想，利用左右子树值有界的特性，在递归时携带当前节点的上下界来快速判断，代码如下
+
+```java
+class Solution {
+	public boolean isValidBST(TreeNode root) {
+		return check(root, Long.MIN_VALUE, Long.MAX_VALUE);
+	}
+
+	private boolean check(TreeNode root, long low, long high) {
+		if (root == null)
+			return true;
+		if (root.val <= low || root.val >= high)
+			return false;
+		return check(root.left, low, root.val) && check(root.right, root.val, high);
+	}
+}
+```
+
+:::
+
+### [二叉搜索树中的插入操作][11]
+
+::: info Description
+将给定值插入给定的二叉搜索树中（保证给定值与所有节点值互不相同）
+:::
+::: details Solution1
+如果值插入的地方不是搜索树底部的话，那势必将导致需要进行类似于堆的下沉操作那种额外开销，所以将值插入到搜索树底部是最优方案（一定可以插入到树底），所以只需要一直向下迭代判断，最后即可得出合适的底部插入位置
+
+```java
+class Solution {
+	public TreeNode insertIntoBST(TreeNode root, int val) {
+		if (root == null)
+			return new TreeNode(val);
+		TreeNode pos = root;
+		while (pos != null) {
+			if (val < pos.val) {
+				if (pos.left == null) {
+					pos.left = new TreeNode(val);
+					break;
+				} else
+					pos = pos.left;
+			} else {
+				if (pos.right == null) {
+					pos.right = new TreeNode(val);
+					break;
+				} else
+					pos = pos.right;
+			}
+		}
+		return root;
+	}
+}
+```
+
+### [删除二叉搜索树中的节点][12]
+
+::: info Description
+给定二叉搜索树的根节点和一个值，删除二叉搜索树中对应的节点（存在的话），并保证二叉搜索树的性质不变
+:::
+::: details Solution
+向下搜索时若找到了对应节点就执行删除。因为删除后需要把新替代的节点连到上一级节点，故递归写法比较省事，但实际上只需要先判断根节点是否符合，后续就可以采用迭代实现以避免递归的隐式栈空间消耗。
+
+在删除时分情况：若为叶子节点则直接删除；若仅有一侧有子节点则直接用该子节点替代对应节点；若左右子节点都存在，则寻找其前驱节点（左子树中最大的）或者后继节点（右子树中最小的）进行替代
+
+```java
+class Solution {
+	public TreeNode deleteNode(TreeNode root, int key) {
+		if (root == null)
+			return null;
+		if (root.val == key)
+			return del(root);
+		TreeNode cur = root;
+		while (cur != null) {
+			if (cur.left != null && cur.left.val == key) {
+				cur.left = del(cur.left);
+				break;
+			}
+			if (cur.right != null && cur.right.val == key) {
+				cur.right = del(cur.right);
+				break;
+			}
+			if (cur.val > key)
+				cur = cur.left;
+			else
+				cur = cur.right;
+		}
+		return root;
+	}
+
+	private TreeNode del(TreeNode root) {
+		if (root.left == null && root.right == null)
+			return null;
+		else if (root.left == null || root.right == null)
+			return root.left == null ? root.right : root.left;
+		else {	// find the successor node
+			TreeNode res = root.right;
+			while (res.left != null)
+				res = res.left;
+			res.left = root.left;
+			return root.right;
+		}
+	}
+}
+```
+
+:::
+
+### [二叉树的锯齿形层序遍历][13]
+
+::: info Description
+对给定二叉树进行锯齿形层序遍历（即往下一层层遍历，各层从左往右与从右往左交替）
+:::
+::: details Solution
+二叉树层序遍历可用广度优先遍历实现，但如此每层都是从左往右，故可以设指示变量来在交替的层之间进行方向记录，在记录每层遍历到的节点值时根据指示从头还是尾依次添加
+
+```java
+class Solution {
+	public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+		List<List<Integer>> res = new ArrayList<>();
+		Queue<TreeNode> que = new LinkedList<>();
+		boolean leftToRight = true;
+		if (root != null)
+			que.offer(root);
+		while (!que.isEmpty()) {
+			int size = que.size();
+			Deque<Integer> tmp = new LinkedList<>();
+			while (size-- > 0) {
+				TreeNode cur = que.poll();
+				if (leftToRight)
+					tmp.offerLast(cur.val);
+				else
+					tmp.offerFirst(cur.val);
+				if (cur.left != null)
+					que.add(cur.left);
+				if (cur.right != null)
+					que.add(cur.right);
+			}
+			res.add(new LinkedList<>(tmp));
+			leftToRight = !leftToRight;
+		}
+		return res;
+	}
+}
+```
+
+:::
+
+### [填充每个节点的下一个右侧节点指针 II][14]
+
+::: info Description
+给定节点带有仅初始化的额外指针参数的二叉树，要求在仅使用常量级额外空间前提下，令所有节点的该参数都指向同层右侧节点（若右侧无节点则仍为空）
+:::
+::: details Solution
+若使用基于 BFS 的层序遍历则需要额外的队列来存储一层以及下一层相关节点，故应考虑利用节点自身的额外参数，在实现题目要求的同时起到队列的作用从而节省空间。考虑到队列的作用是遍历一层时准备好下一层遍历，若我们假设当前层已经实现题目需求（起始时根节点已符合要求），则可以用链表的形式进行遍历，进一步，若遍历此层的同时能将下一层也逐步通过额外参数进行连接，则可重复此过程而无需队列的额外空间。
+
+具体来说，首先在即将开始遍历当前层的左侧头节点时，准备好下一层的哑节点作为下一层头节点的前驱节点，然后在从左到右遍历当前层的每个节点时，都将其左右子节点依次连到链表尾部（即前驱节点后），当该层遍历完之后只需要从哑节点的后继节点（即下一层的头节点）开始重复该过程即可
+
+```java
+class Solution {
+	public Node connect(Node root) {
+		Node dummy = new Node();
+		Node cur = root, pre = dummy;
+		while (cur != null) {
+			if (cur.left != null) {
+				pre.next = cur.left;
+				pre = pre.next;
+			}
+			if (cur.right != null) {
+				pre.next = cur.right;
+				pre = pre.next;
+			}
+			cur = cur.next;
+			if (cur == null) {
+				cur = dummy.next;
+				dummy.next = null;
+				pre = dummy;
+			}
+		}
+		return root;
+	}
+}
+```
+
+:::
+
+### [二叉树的序列化与反序列化][15]
+
+::: info Description
+实现一个能将二叉树序列化为字符串并能将字符串反序列化为二叉树功能的类
+:::
+::: details Solution
+在 DFS 时拼接字符串实现序列化，类似思路实现反序列化
+
+```java
+class Codec {
+	private StringBuilder serial = new StringBuilder();
+	private List<String> nodes = new LinkedList<>();
+
+	// Encodes a tree to a single string.
+	public String serialize(TreeNode root) {
+		encode(root);
+		return serial.toString();
+	}
+
+	private void encode(TreeNode root) {
+		if (root == null)
+			serial.append("#,");
+		else {
+			serial.append(root.val + ",");
+			encode(root.left);
+			encode(root.right);
+		}
+	}
+
+	// Decodes your encoded data to tree.
+	public TreeNode deserialize(String data) {
+		nodes.addAll(Arrays.asList(data.split(",")));
+		return decode();
+	}
+
+	private TreeNode decode() {
+		if (nodes.get(0).equals("#")) {	// 注意字符串比较方式
+			nodes.remove(0);
+			return null;
+		}
+		TreeNode node = new TreeNode(Integer.valueOf(nodes.get(0)));
+		nodes.remove(0);
+		node.left = decode();
+		node.right = decode();
+		return node;
+	}
+}
+```
+
+:::
+
+### [二叉树展开为链表][08]
+
+::: info Description
+将二叉树节点变为只存在右孩子的先序链表（所有节点左孩子都为空）
+:::
+::: details Solution1
+直接先序遍历并存储各节点，再依次修改其左右孩子形成链表
+
+```java
+class Solution {
+	private Queue<TreeNode> que = new LinkedList<>();
+
+	public void flatten(TreeNode root) {
+		fo(root);
+		TreeNode head = new TreeNode();
+		TreeNode cur = head;
+		while (!que.isEmpty()) {
+			cur.right = que.poll();
+			cur = cur.right;
+			cur.left = null;
+		}
+		cur.right = null;
+	}
+
+	private void fo(TreeNode root) {
+		if (root != null) {
+			que.offer(root);
+			fo(root.left);
+			fo(root.right);
+		}
+	}
+}
+```
+
+:::
+
+::: details Solution2
+实际上就是迭代时将右孩子变为左子树最右下叶节点的右孩子，再将左孩子变为右孩子
+
+此法在迭代到每个需要处理的节点时，需要遍历找出该节点左子树的最右下叶节点，看起来貌似更耗时，但实际上所有遍历过的节点都会在本次迭代立刻成为最终右链表的一部分，并且不会在迭代时搜索左子树时被再次遍历到，最终总体来看每个节点只需被遍历两次
+
+```java
+class Solution {
+	public void flatten(TreeNode root) {
+		TreeNode cur = root;
+		while (cur != null) {
+			if (cur.left != null) {
+				TreeNode next = cur.left;
+				TreeNode pre = next;
+				while (pre.right != null) {
+					pre = pre.right;
+				}
+				pre.right = cur.right;
+				cur.right = next;
+				cur.left = null;
+			}
+			cur = cur.right;
+		}
+	}
+}
+```
+
+:::
+
+### [][16]
 <!-- ------------------------------------------------------- -->
 [00]:https://leetcode-cn.com/problems/linked-list-cycle-ii/
 [01]:https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
@@ -862,3 +1176,11 @@ class Solution{
 [0B]:https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray/
 [0C]:https://leetcode-cn.com/problems/trapping-rain-water/
 [0D]:https://leetcode-cn.com/problems/largest-rectangle-in-histogram/
+[0E]:https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+[0F]:https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/
+[10]:https://leetcode.cn/problems/validate-binary-search-tree/
+[11]:https://leetcode.cn/problems/insert-into-a-binary-search-tree/
+[12]:https://leetcode.cn/problems/delete-node-in-a-bst/
+[13]:https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/
+[14]:https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/
+[15]:https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/
