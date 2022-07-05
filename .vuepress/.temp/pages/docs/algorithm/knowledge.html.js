@@ -11,9 +11,6 @@ export const data = {
     "category": [
       "algorithm"
     ],
-    "tag": [
-      "DFS"
-    ],
     "star": true,
     "summary": "反转链表 code-group 头插法 递归 队列和栈相互实现 code-group 用栈实现队列 用队列实现栈 BFS 模版 code-group 树 图 单调队列 貌似单调队列的作用常可以用优先队列来替代 二叉树模拟隐式栈进行遍历 code-group 前序 中序 后序 图 DFS code-group 隐式栈 模拟调用栈 单调栈 单调栈的思想与单调队列",
     "head": [
@@ -50,13 +47,6 @@ export const data = {
         {
           "property": "og:locale",
           "content": "zh-CN"
-        }
-      ],
-      [
-        "meta",
-        {
-          "property": "article:tag",
-          "content": "DFS"
         }
       ],
       [
@@ -141,11 +131,17 @@ export const data = {
       "title": "交换两变量的值",
       "slug": "交换两变量的值",
       "children": []
+    },
+    {
+      "level": 3,
+      "title": "回溯",
+      "slug": "回溯",
+      "children": []
     }
   ],
   "readingTime": {
-    "minutes": 10.29,
-    "words": 3086
+    "minutes": 12.42,
+    "words": 3726
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/knowledge.html",
   "filePathRelative": "docs/algorithm/knowledge.md"

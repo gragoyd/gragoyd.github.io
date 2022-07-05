@@ -248,9 +248,170 @@ class Solution {
 
 :::
 
+### [根据身高重建队列][05]
+
+::: info Description
+给定一群人的乱序的属性数组，其中各元素 $[h_i, k_i]$ 表示第 $i$ 个人的身高为 $h_i$ 且前面恰有 $k_i$ 个人的身高不低于 $h_i$ ，将属性数组重建为有序的并返回
+
+input: `[[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]`
+
+output: `[[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]`
+:::
+::: details Solution
+分为两个部分来考虑，以什么顺序从原数组中抽出来人，还有将抽出来的人怎么插入新建的队列中去。实际上新建的队列只需对各人的第二属性负责即可，那么显然如果将人从高到低逐渐插入新队列，就不会对已插入的人的第二属性产生影响，并且当前插入者的第二属性恰好就是插入新队列的索引位置，由此可得从原数组中抽人的第一顺序应当是其第一属性（身高），当身高相同时考虑第二属性，因为其表示的是前面有多少个的问题，所以只需稍加试验即可得应按照升序进行抽取
+
+```java
+class Solution {
+	public int[][] reconstructQueue(int[][] people) {
+		Arrays.sort(people, new Comparator<int[]>() {
+			@Override
+			public int compare(int[] o1, int[] o2) {
+				return o1[0] == o2[0] ? o1[1] - o2[1] : o2[0] - o1[0];
+			}
+		});
+		List<int[]> res = new LinkedList<>();
+		for (int[] p : people)
+			res.add(p[1], p);
+		return res.toArray(new int[res.size()][]);
+	}
+}
+```
+
+:::
+
+### [分发糖果][06]
+
+::: info Description
+若干人站成一排，给定代表各位评分的整数数组，依据评分给每人发糖果，要求每人至少发一个，并且相邻两人评分更高的分给更多糖果，求满足要求的最少糖果数
+:::
+::: details Solution1
+实际上“相邻两人评分更高的分给更多糖果”可以拆分为两个不同方向遍历时的单侧规则：若当前的评分高于上一个，则当前的糖果数比上一个的多一个，否则当前只给一个糖果（合理利用规则减少糖果数）。所以只需进行两次反向遍历，得到每人在两次遍历时最少需分得的糖果数，取其更大者即可
+
+具体实现时，第一次遍历的糖果数需要数组暂存，但第二次只需要用单个变量进行记录当前位置的糖果数并同时计算答案即可
+
+```java
+class Solution {
+	public int candy(int[] ratings) {
+		int[] left = new int[ratings.length];
+		left[0] = 1;
+		for (int i = 1; i < ratings.length; ++i) {
+			if (ratings[i - 1] < ratings[i])
+				left[i] = left[i - 1] + 1;
+			else
+				left[i] = 1;
+		}
+		int res = left[ratings.length - 1];
+		for (int i = ratings.length - 2, right = 1; i >= 0; --i) {
+			if (ratings[i] > ratings[i + 1])
+				++right;
+			else
+				right = 1;
+			res += Math.max(left[i], right);
+		}
+		return res;
+	}
+}
+```
+
+:::
+::: details Solution2
+从左到右遍历，记前一个分得的糖果数量为`pre`，当前递减序列的长度为`down`、最近的递增序列的长度为`up`，进行判断：若当前比上一个评分高，说明正在最近的递增序列中，直接分配给该同学`pre + 1`个糖果即可；否则视作在一个递减序列中，直接分配给当前一个糖果，并为其所在的递减序列中所有人再多分配一个糖果，以保证糖果数量还是满足条件。实际上并不需要显式地额外分配糖果，因为需要额外分配的糖果数量即为`down`；同时需要注意当`down == up`时，需要把最近的递增序列的最后一个同学也并进递减序列中，因为其糖果数得同时满足两侧需求（参照解法一）
+
+```java
+class Solution {
+	public int candy(int[] ratings) {
+		int total = 1, up = 1, down = 0, pre = 1;
+		for (int i = 1; i < ratings.length; ++i) {
+			if (ratings[i - 1] <= ratings[i]) {
+				down = 0;
+				pre = ratings[i - 1] == ratings[i] ? 1 : pre + 1;
+				total += pre;
+				up = pre;
+			} else {
+				++down;
+				if (down == up)
+					++down;
+				total += down;
+				pre = 1;
+			}
+		}
+		return total;
+	}
+}
+```
+
+:::
+
+### [非递减数列][07]
+
+::: info Description
+判断给定数组是否能在最多改变一个元素条件下成为非递减的
+:::
+::: details Solution
+能变成非递减数组的话，原数组最多只能有一次递减发生。考虑发生递减的连续的三个元素`a, b, c`，其中`a <= b`且`b > c`，实际上只有两种情况：
+
+- `a <= c`：既可将`b`降至`c`，也可将`c`升至`b`。但应尽可能使紧接着`c`的元素满足非递减，所以应将`b`降至`c`
+- `a > c`: 只有将`c`升至`a`一种方式
+
+在遍历检查时记录是否已有一次递减发生，若已发生则直接返回。基于此可知，在检测到可能存在的第二次递减时，一定用不到第一次递减的`b`元素，故上述第一种情况下无需实际地改变`b`的值
+
+```java
+class Solution {
+	public boolean checkPossibility(int[] nums) {
+		if (nums.length == 1)
+			return true;
+		boolean one = nums[0] > nums[1];
+		for (int i = 1; i < nums.length - 1; ++i) {
+			if (nums[i] > nums[i + 1]) {
+				if (one)
+					return false;
+				one = true;
+				if (nums[i - 1] > nums[i + 1])
+					nums[i + 1] = nums[i];
+			}
+		}
+		return true;
+	}
+}
+```
+
+:::
+
+### [回文子串][08]
+
+::: info Description
+求给定字符串所有回文子串的数量
+:::
+::: details Solution
+枚举所有可能的回文子串中心，将各中心向两侧尽可能延伸，以此枚举所有回文子串，时间复杂度比直接枚举子串两端再判断是否回文要低。
+
+回文子串的中心有但字符和双字符两种，需要分开讨论扩展。枚举所有中心时有个小技巧：对于每个字符作为中心左端，中心右端要么是其本身，要么是右侧的下一个字符，故索引呈现强烈的奇偶规律性，可以将中心的左右端点并在一个循环中进行枚举，归纳可得共需枚举`2*n-1`次，左端点为`i/2`再取整，右端点为`i/2 + i%2`
+
+```java
+class Solution {
+	public int countSubstrings(String s) {
+		int res = 0;
+		for (int i = 0; i < 2 * s.length() - 1; ++i) {
+			int l = i >> 1, r = (i >> 1) + (i & 1);
+			while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+				--l;
+				++r;
+				++res;
+			}
+		}
+		return res;
+	}
+}
+```
+
+:::
 <!-- ------------------------------------------------------- -->
 [00]:https://leetcode-cn.com/problems/diagonal-traverse/
 [01]:https://leetcode-cn.com/problems/longest-palindromic-substring/
 [02]:https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/
 [03]:https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/
 [04]:https://leetcode.cn/problems/majority-element-ii/
+[05]:https://leetcode.cn/problems/queue-reconstruction-by-height/
+[06]:https://leetcode.cn/problems/candy/
+[07]:https://leetcode.cn/problems/non-decreasing-array/
+[08]:https://leetcode.cn/problems/palindromic-substrings/

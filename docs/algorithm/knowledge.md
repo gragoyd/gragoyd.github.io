@@ -619,7 +619,9 @@ sequenceDiagram
     end
 ```
 
-### 交换两变量的值
+### 交换两不同值变量的值
+
+仅限不同值的交换，若值相同则直接成 0
 
 ```java
 a = a ^ b;	// a1 = a0 ^ b0
@@ -726,5 +728,171 @@ void backtracking(path, start){
 - 实际上标记数组已经在功能上包含起始索引了，但起始索引能在下一层遍历选取时，先标记数组一步进行剪枝，进一步减少无效搜索；或者对于有序数组，因为每次下一层搜索都是基于当前层右边起始的，所以起始索引可以完全替代标记数组
 - 若题目仅要求求出不同组合的个数，可考虑用动态规划来做，避免实际模拟每一种组合
 
+### 动态规划
+
+#### 思考流程
+
+1. 明确问题存在哪几种状态；问题场景如何做状态选择，进而转换状态
+2. 确定 dp 数组以及下标的含义
+3. 根据【选择】的过程，确定递推公式
+4. dp 数组如何初始化
+5. 确定遍历顺序
+6. 举例推导 dp 数组，进行问题模拟
+7. 出错的情况，将 dp 数组打印出来，保证程序处理流程如设想运行
+8. 优化：若每一 dp 状态仅与上一个状态有关，则可将 dp 数组进行降维压缩
+
+#### 背包问题
+
+:::: code-group
+::: code-group-item 01 背包
+
+```java
+// 每种物品仅有 1 个，且物品放入背包无顺序要求
+
+// 多维背包相应地增加 dp 的维度即可，在转移方程内也需要同时处理
+public class MyTest {
+	public static void main(String[] args) {
+		int[] weights = { 1, 2, 3, 4 };
+		int[] values = { 2, 4, 4, 5 };
+		System.out.println(origin01Bag(5, values, weights));
+		System.out.println(zipped01Bag(5, values, weights));
+	}
+
+	public static int origin01Bag(int limit, int[] values, int[] weights) {
+		int[][] dp = new int[values.length + 1][limit + 1];
+		for (int i = 1; i <= values.length; ++i)
+			for (int j = 1; j <= limit; ++j)
+				if (j < weights[i - 1])
+					dp[i][j] = dp[i - 1][j];
+				else
+					dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - weights[i - 1]] + values[i - 1]);
+		return dp[values.length][limit];
+	}
+	
+	/*
+	 * 空间压缩后内层循环必须得逆序，原因是选中第 i 个物品放入的 dp[i][j] 依赖于 dp[i-1][j - weight[i-1]]
+	 * 也就是说某行的 dp 值的更新依赖于上一行左侧的某值，若内循环从左至右则会覆盖掉上一行左侧的值
+	 */
+	public static int zipped01Bag(int limit, int[] values, int[] weights) {
+		int[] dp = new int[limit + 1];
+		for (int i = 0; i < values.length; ++i)
+			for (int j = limit; j >= weights[i]; --j)
+				dp[j] = Math.max(dp[j], dp[j - weights[i]] + values[i]);
+		return dp[limit];
+	}
+}
+```
+
+:::
+::: code-group-item 完全背包
+
+```java
+// 完全背包与 01 背包的不同在于每种物品的数量是无限的，可以无限次选取某种物品放入
+public class MyTest {
+	public static void main(String[] args) {
+		int[] weights = { 1, 2, 3, 4 };
+		int[] values = { 2, 4, 4, 5 };
+		System.out.println(zippedCompleteBag(5, values, weights));
+	}
+
+	// 完全背包只需将 01 背包的内循环改为正向即可
+	public static int zippedCompleteBag(int limit, int[] values, int[] weights) {
+		int[] dp = new int[limit + 1];
+		for (int i = 1; i <= values.length; ++i)
+			for (int j = weights[i - 1]; j <= limit; ++j)
+				dp[j] = Math.max(dp[j], dp[j - weights[i - 1]] + values[i - 1]);
+		return dp[limit];
+	}
+}
+```
+
+:::
+::: code-group-item 顺序背包
+
+```java
+// 若要求放入背包的物品有顺序要求，则需将背包限制放到外循环，将各物品的遍历置于内循环，方能产生各种物品的不同顺序
+// 若物品遍历在外循环则选中的物品的相对顺序永远固定
+public class MyTest {
+	public static void main(String[] args) {
+		int[] weights = { 1, 2, 3, 4 };
+		int[] values = { 2, 4, 4, 5 };
+		System.out.println(zippedSort01Bag(5, values, weights));
+		System.out.println(zippedSortCompleteBag(5, values, weights));
+	}
+
+	public static int zippedSort01Bag(int limit, int[] values, int[] weights) {
+		int[] dp = new int[limit + 1];
+		for (int i = limit; i >= 0; --i)
+			for (int j = 1; j < values.length; ++j)
+				if (i >= weights[j - 1])
+					dp[i] = Math.max(dp[i], dp[i - weights[j - 1]] + values[j - 1]);
+		return dp[limit];
+	}
+
+	public static int zippedSortCompleteBag(int limit, int[] values, int[] weights) {
+		int[] dp = new int[limit + 1];
+		for (int i = 1; i <= limit; ++i)
+			for (int j = 1; j <= values.length; ++j)
+				if (i >= weights[j - 1])
+					dp[i] = Math.max(dp[i], dp[i - weights[j - 1]] + values[j - 1]);
+		return dp[limit];
+	}
+}
+```
+
+:::
+::: code-group-item 多重背包
+
+```java
+// 多重背包指各种物品最多有若干个
+// 若数据量较小，则偷懒的做法是先将各种若干个拆成若干种只有 1 个的物品，再套用其他背包的模版
+// 但若数据量较大则需要进行二进制优化，再套用其他背包的模版
+
+// 混合背包只需将数量无限的物品以背包总体的限制转换为有限数量，再套用多重背包模版即可
+public class MyTest {
+	public static void main(String[] args) {
+		int[] weights = { 1, 2, 3, 4 };
+		int[] values = { 2, 4, 4, 5 };
+		int[] counts = { 3, 1, 3, 2 };
+		System.out.println(zippedMultiBag(5, values, weights, counts));
+	}
+
+	/*
+	 * 二进制优化的核心思想就是将单种物品的数量进行二进制分组，再将每组等效为新物品，以此降低时间复杂度
+	 */
+	public static int zippedMultiBag(int limit, int[] values, int[] weights, int[] counts) {
+		int[] dp = new int[limit + 1];
+		for (int i = 0; i < values.length; ++i) {
+			for (int k = 1; k < counts[i]; k <<= 1) {
+				for (int j = limit; j >= k * weights[i]; --j)
+					dp[j] = Math.max(dp[j], dp[j - k * weights[i]] + k * values[i]);
+				counts[i] -= k;
+			}
+			for (int j = limit; j >= counts[i] * weights[i]; --j)
+				dp[j] = Math.max(dp[j], dp[j - counts[i] * weights[i]] + counts[i] * values[i]);
+		}
+		return dp[limit];
+	}
+}
+```
+
+:::
+::::
+
+### 计算组合数
+
+$$
+\begin{split}
+	C_n^m &= \frac{n!}{m!(n-m)!} = \frac{n(n-1)\cdots (n-m+1)}{m!} \\
+		&= \frac{n}{1}\cdot \frac{n-1}{2}\cdots \frac{n-m+1}{m}
+\end{split}
+$$
+对于上述最后的形式，若逐项除再相乘，不一定能保证每一项都是整数，直接计算会损失精度。但代码实现时基于已累乘结果，先乘下一项的分子，再除下一项的分母，则必可保证累乘结果始终为整数，因为在除分母`k`的时候，分子已经是连续的`k`个数相乘，其中必含分母的倍数。实际上分母不一定要逆序相乘，顺序亦可，代码如下
+
+```java
+long ans = 1;
+for (int x = n, y = 1; y <= m; --x, ++y)
+	ans = ans * x / y;
+```
 <!-- ---------------------------------- -->
 [00]:https://zhuanlan.zhihu.com/p/338414118

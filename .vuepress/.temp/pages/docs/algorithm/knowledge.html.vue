@@ -499,5 +499,91 @@ a <span class="token operator">=</span> a <span class="token operator">^</span> 
 <li>异或满足结合律</li>
 <li>异或满足交换律</li>
 </ul>
+<h3 id="回溯" tabindex="-1"><a class="header-anchor" href="#回溯" aria-hidden="true">#</a> 回溯</h3>
+<h4 id="适用问题" tabindex="-1"><a class="header-anchor" href="#适用问题" aria-hidden="true">#</a> 适用问题</h4>
+<ul>
+<li>组合问题：若干数字中按⼀定规则找出若干个数的集合</li>
+<li>排列问题：若干数字按⼀定规则全排列的不同排列方式数量</li>
+<li>切割问题：⼀个字符串按⼀定规则有⼏种切割⽅式</li>
+<li>⼦集问题：若干数字的集合⾥有多少符合条件的⼦集</li>
+<li>棋盘问题：N 皇后，解数独等等</li>
+</ul>
+<h4 id="模版" tabindex="-1"><a class="header-anchor" href="#模版" aria-hidden="true">#</a> 模版</h4>
+<CodeGroup>
+<CodeGroupItem title="总模版">
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token keyword">void</span> <span class="token function">backtracking</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> param<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>endCondition<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// store result</span>
+		<span class="token keyword">return</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>el <span class="token operator">:</span> elements<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>notUseJudge<span class="token punctuation">)</span> <span class="token punctuation">{</span>	<span class="token comment">// remove duplication</span>
+			path<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// deal</span>
+			<span class="token function">backtracking</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> param<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// recursion</span>
+			path<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// undo deal</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div></CodeGroupItem>
+<CodeGroupItem title="数据无序哈希表去重">
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">// 适用于数据无序或者不可重排序将重复值并到一起的情况</span>
+<span class="token keyword">void</span> <span class="token function">backtracking</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> param<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>endCondition<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// store result</span>
+		<span class="token keyword">return</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> used <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span>el <span class="token operator">:</span> elements<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>used<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>	<span class="token comment">// remove duplication</span>
+			path<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// deal</span>
+			used<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// mark</span>
+			<span class="token function">backtracking</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> param<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// recursion</span>
+			used<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// unmark</span>
+			path<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// undo deal</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div></CodeGroupItem>
+<CodeGroupItem title="数据有序条件去重">
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">// 适用于数据有序或者可重排序将重复值并到一起的情况</span>
+<span class="token keyword">void</span> <span class="token function">backtracking</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> start<span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>endCondition<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		result<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// store result</span>
+		<span class="token keyword">return</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> used <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> start<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>start <span class="token operator">&lt;</span> i <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!=</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>	<span class="token comment">// remove duplication</span>
+			<span class="token keyword">continue</span><span class="token punctuation">;</span>
+		path<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// deal</span>
+		<span class="token function">backtracking</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> start <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// recursion</span>
+		path<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// undo deal</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div></CodeGroupItem>
+</CodeGroup>
+<h4 id="实现要点" tabindex="-1"><a class="header-anchor" href="#实现要点" aria-hidden="true">#</a> 实现要点</h4>
+<ul>
+<li>添加一条答案路径时必须由当前路径列表新建一个列表来添加，否则每次添加的都是贯穿回溯全过程的唯一的列表指针，最后一无所有</li>
+<li>每层是否需要起始索引：
+<ul>
+<li>对于组合问题：
+<ul>
+<li>若在同一集合中求组合，则需起始索引控制各层循环的起始位置</li>
+<li>若是多个互不影响的集合取组合，则无需起始索引</li>
+</ul>
+</li>
+<li>对于排列问题：每层都是从头开始搜索而无需起始索引，且</li>
+</ul>
+</li>
+<li>是否需要标记数组标记当前层回溯路径中已存在哪些元素：
+<ul>
+<li>若元素可重复使用，则无需标记数组</li>
+<li>若元素仅可使用一次，则需要标记</li>
+</ul>
+</li>
+<li>实际上标记数组已经在功能上包含起始索引了，但起始索引能在下一层遍历选取时，先标记数组一步进行剪枝，进一步减少无效搜索；或者对于有序数组，因为每次下一层搜索都是基于当前层右边起始的，所以起始索引可以完全替代标记数组</li>
+<li>若题目仅要求求出不同组合的个数，可考虑用动态规划来做，避免实际模拟每一种组合</li>
+</ul>
 <!-- ---------------------------------- -->
 </template>

@@ -53,6 +53,8 @@ export default defineThemeConfig({
 				plugins: ["highlight", "math", "search", "notes", "zoom"],
 			},
 			delay: 300,
+			sup: true,	// 文字上角标
+			sub: true,	// 文字下角标
 		},
 
 		copyright: {

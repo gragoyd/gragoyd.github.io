@@ -1160,7 +1160,51 @@ class Solution {
 
 :::
 
-### [][16]
+### [监控二叉树][16]
+
+::: info Description
+在给定的二叉树的节点上安装摄像头，节点上的每个摄影头都可以监视其父对象、自身及其直接子对象。求监控树的所有节点所需的最小摄像头数量
+:::
+::: details Solution
+考虑哪些结构的树可以将摄像头的作用最大化，或考虑哪些节点可以省掉摄像头。显然在叶子节点上放摄像头并不好，因为其监控俩字节点的功能被浪费了，所以应从叶子节点的父节点开始放置摄像头，由此可以想到用 DFS，在由下往上返回时通过返回值将各子树的监控覆盖情况传递给父节点，由此决定上一层如何放置摄像头。实际上共有三种情况：
+
+1. 俩子节点都能由之前放置的摄像头监控到，应跳过本节点但因此父节点必须放置摄像头
+2. 至少有一个子节点未被之前放置的摄像头监控到，故应在本节点放置摄像头，而父节点因此会被覆盖（返回值需体现）
+3. 俩子节点都已被监控覆盖，并至少有一个子节点放有摄像头，则此三节点树恰好完全覆盖但父节点未被覆盖（返回值应与空节点的相同）
+
+接下来设计 DFS 函数返回值，令返回值为俩子节点对本节点监控的贡献度（还有特殊情况的特定值）：
+
+- 从空节点开始考虑，返回 0，同时也是上述第三种情况，即子树恰与父节点完全无联系
+- 接下来考虑俩子树返回值之和
+  - 若为零则说明俩子节点都未将本节点纳入监控范围，所以应将本节点视作叶子节点，不放置摄像头，但父节点必须放置，令相应返回值为 3
+  - 若为 1 或 2，则说明本节点已由子节点的摄像头纳入监控范围，对应上述第三种情况，返回 0
+  - 若和大于 2，则说明至少有一个子节点的返回值为 3（未被监控覆盖），要求本节点必须放置摄像头，放置后返回 1
+
+注意最后根节点的返回值也是含有监控覆盖信息的，所以也需要根据上述规则判断是否需要在根节点再放置一个摄像头
+
+```java
+class Solution {
+	private int res = 0;
+
+	public int minCameraCover(TreeNode root) {
+		return dfs(root) > 2 ? res + 1 : res;
+	}
+
+	private int dfs(TreeNode node) {
+		if (node == null)
+			return 0;
+		int val = dfs(node.left) + dfs(node.right);
+		if (val == 0)
+			return 3;
+		if (val < 3)
+			return 0;
+		++res;
+		return 1;
+	}
+}
+```
+
+:::
 <!-- ------------------------------------------------------- -->
 [00]:https://leetcode-cn.com/problems/linked-list-cycle-ii/
 [01]:https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
@@ -1184,3 +1228,4 @@ class Solution {
 [13]:https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/
 [14]:https://leetcode.cn/problems/populating-next-right-pointers-in-each-node-ii/
 [15]:https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/
+[16]:https://leetcode.cn/problems/binary-tree-cameras/

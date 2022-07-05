@@ -89,11 +89,17 @@ export const data = {
       "title": "求众数 II",
       "slug": "求众数-ii",
       "children": []
+    },
+    {
+      "level": 3,
+      "title": "根据身高重建队列",
+      "slug": "根据身高重建队列",
+      "children": []
     }
   ],
   "readingTime": {
-    "minutes": 3.89,
-    "words": 1168
+    "minutes": 5.09,
+    "words": 1527
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/simulation.html",
   "filePathRelative": "docs/algorithm/simulation.md"

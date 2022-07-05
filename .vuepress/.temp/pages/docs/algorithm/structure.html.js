@@ -228,8 +228,8 @@ export const data = {
     }
   ],
   "readingTime": {
-    "minutes": 24.51,
-    "words": 7352
+    "minutes": 24.54,
+    "words": 7361
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/structure.html",
   "filePathRelative": "docs/algorithm/structure.md"

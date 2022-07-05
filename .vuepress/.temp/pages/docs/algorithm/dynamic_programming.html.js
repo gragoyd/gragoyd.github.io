@@ -12,7 +12,7 @@ export const data = {
     "tag": [
       "DP"
     ],
-    "summary": "[不同的二叉搜索树][00] Description 给定整数n，求恰由n个节点组成且节点值从1到n互不相同的二叉搜索树数量 Solution 对于节点序列 $1, \\cdots, n$ ，可以遍历取特定数 $i$ 作为根节点，则左右子树节点序列为 $1, \\cdots, (i-1)$ 和 $(i+1),\\cdots,n$ ，则可以继续递归遍历尝试构建搜索子",
+    "summary": "基本类型 [不同的二叉搜索树][00] Description 给定整数n，求恰由n个节点组成且节点值从1到n互不相同的二叉搜索树数量 Solution 对于节点序列 $1, \\cdots, n$ ，可以遍历取特定数 $i$ 作为根节点，则左右子树节点序列为 $1, \\cdots, (i-1)$ 和 $(i+1),\\cdots,n$ ，则可以继续递归遍历尝试",
     "head": [
       [
         "meta",
@@ -61,15 +61,35 @@ export const data = {
   "excerpt": "",
   "headers": [
     {
-      "level": 3,
-      "title": "不同的二叉搜索树",
-      "slug": "不同的二叉搜索树",
-      "children": []
+      "level": 2,
+      "title": "基本类型",
+      "slug": "基本类型",
+      "children": [
+        {
+          "level": 3,
+          "title": "不同的二叉搜索树",
+          "slug": "不同的二叉搜索树",
+          "children": []
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "背包问题",
+      "slug": "背包问题",
+      "children": [
+        {
+          "level": 3,
+          "title": "组合总和 IV",
+          "slug": "组合总和-iv",
+          "children": []
+        }
+      ]
     }
   ],
   "readingTime": {
-    "minutes": 1.34,
-    "words": 403
+    "minutes": 1.88,
+    "words": 563
   },
   "copyright": "著作权归Grag所有\n基于MIT协议\n原文链接：https://github.com/gragoyd/docs/algorithm/dynamic_programming.html",
   "filePathRelative": "docs/algorithm/dynamic_programming.md"

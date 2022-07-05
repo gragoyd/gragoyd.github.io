@@ -1,4 +1,5 @@
-<template><h3 id="不同的二叉搜索树" tabindex="-1"><a class="header-anchor" href="#不同的二叉搜索树" aria-hidden="true">#</a> <a href="https://leetcode.cn/problems/unique-binary-search-trees/" target="_blank" rel="noopener noreferrer">不同的二叉搜索树<ExternalLinkIcon/></a></h3>
+<template><h2 id="基本类型" tabindex="-1"><a class="header-anchor" href="#基本类型" aria-hidden="true">#</a> 基本类型</h2>
+<h3 id="不同的二叉搜索树" tabindex="-1"><a class="header-anchor" href="#不同的二叉搜索树" aria-hidden="true">#</a> <a href="https://leetcode.cn/problems/unique-binary-search-trees/" target="_blank" rel="noopener noreferrer">不同的二叉搜索树<ExternalLinkIcon/></a></h3>
 <div class="custom-container info"><p class="custom-container-title">Description</p>
 <p>给定整数<code>n</code>，求恰由<code>n</code>个节点组成且节点值从<code>1</code>到<code>n</code>互不相同的二叉搜索树数量</p>
 </div>
@@ -21,5 +22,24 @@
 	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div></details>
+<h2 id="背包问题" tabindex="-1"><a class="header-anchor" href="#背包问题" aria-hidden="true">#</a> 背包问题</h2>
+<h3 id="组合总和-iv" tabindex="-1"><a class="header-anchor" href="#组合总和-iv" aria-hidden="true">#</a> <a href="https://leetcode.cn/problems/combination-sum-iv/" target="_blank" rel="noopener noreferrer">组合总和 IV<ExternalLinkIcon/></a></h3>
+<div class="custom-container info"><p class="custom-container-title">Description</p>
+<p>给定目标值和元素各异的数组，求出数组中总和为目标值的组合的个数（元素可重复使用）</p>
+</div>
+<details class="custom-block details"><summary>Solution</summary>
+<p>此类问题可以用回溯把每种组合模拟出来统计，但大可不必，因为只需求出数量，故可看作与顺序相关的完全背包问题，直接套用模版</p>
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+	<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">combinationSum4</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> target<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span>target <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> target<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> 
+			<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> num <span class="token operator">:</span> nums<span class="token punctuation">)</span> 
+				<span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">>=</span> num<span class="token punctuation">)</span>
+					dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> dp<span class="token punctuation">[</span>j <span class="token operator">-</span> num<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> dp<span class="token punctuation">[</span>target<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div></details>
 <!-- ------------------------------------------------------- -->
 </template>
