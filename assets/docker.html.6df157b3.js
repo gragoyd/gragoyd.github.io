@@ -1,0 +1,51 @@
+import{r as e,c as p,a as n,b as t,F as r,d as a,e as o,o as c}from"./app.f5286203.js";import{_ as u}from"./plugin-vue_export-helper.21dcd24c.js";const l={},i=n("h2",{id:"\u6559\u7814\u5BA4\u670D\u52A1\u5668-docker-\u4F7F\u7528\u8BB0\u5F55",tabindex:"-1"},[n("a",{class:"header-anchor",href:"#\u6559\u7814\u5BA4\u670D\u52A1\u5668-docker-\u4F7F\u7528\u8BB0\u5F55","aria-hidden":"true"},"#"),a(" \u6559\u7814\u5BA4\u670D\u52A1\u5668 Docker \u4F7F\u7528\u8BB0\u5F55")],-1),d={href:"https://github.com/gezp/docker-ubuntu-desktop",target:"_blank",rel:"noopener noreferrer"},b=a("\u6208\u632F\u9E4F\u5B66\u957F\u7684 Docker \u5E93"),m=o(`<h2 id="\u8FD0\u884C\u955C\u50CF\u7684\u51C6\u5907\u5DE5\u4F5C" tabindex="-1"><a class="header-anchor" href="#\u8FD0\u884C\u955C\u50CF\u7684\u51C6\u5907\u5DE5\u4F5C" aria-hidden="true">#</a> \u8FD0\u884C\u955C\u50CF\u7684\u51C6\u5907\u5DE5\u4F5C</h2><ol><li>\u53C2\u7167 <a href="#%E7%9B%AE%E5%89%8D%E8%BF%90%E8%A1%8C%E7%9A%84%E9%95%9C%E5%83%8F">\u8FD9\u4E9B</a>\u4EE3\u7801\u8DD1\u8D77\u6765\u3002\u8BB0\u5F97\u5148\u4FEE\u6539\u5176\u4E2D\u7684 <code>--name</code>, <code>-p</code> \u5E76\u786E\u8BA4\u955C\u50CF\u7248\u672C</li><li>\u5728 iTerm2 \u4E2D\u914D\u7F6E profile \u4EE5\u4FBF\u540E\u7EED\u4FBF\u6377\u8FDE\u63A5\u3002\u914D\u7F6E\u5B8C\u540E\u9700\u5C06\u672C\u673A<code>~/.ssh/id_rsa.pub</code>\u7684\u5185\u5BB9\u62F7\u5230 docker \u7684<code>~/.ssh/authorized_keys</code>\u6587\u4EF6\u4E2D\u53BB\uFF0C\u5B9E\u73B0\u65E0\u5BC6\u7801\u767B\u5F55</li><li>NoMachine \u6309\u9700\u914D\u7F6E</li></ol><h2 id="\u76EE\u524D\u8FD0\u884C\u7684\u955C\u50CF" tabindex="-1"><a class="header-anchor" href="#\u76EE\u524D\u8FD0\u884C\u7684\u955C\u50CF" aria-hidden="true">#</a> \u76EE\u524D\u8FD0\u884C\u7684\u955C\u50CF</h2><h3 id="oyd-pytorch3d" tabindex="-1"><a class="header-anchor" href="#oyd-pytorch3d" aria-hidden="true">#</a> oyd_pytorch3d</h3><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code><span class="token function">docker</span> run -d --restart<span class="token operator">=</span>on-failure <span class="token punctuation">\\</span>
+	--name oyd_pytorch3d <span class="token punctuation">\\</span>
+	--cap-add<span class="token operator">=</span>SYS_PTRACE <span class="token punctuation">\\</span>
+	--gpus all  <span class="token punctuation">\\</span>
+	--shm-size<span class="token operator">=</span>4g <span class="token punctuation">\\</span>
+	-v /media/yanglu/data:/home/ubuntu/data <span class="token punctuation">\\</span>
+	-v /tmp/.X11-unix:/tmp/.X11-unix:rw <span class="token punctuation">\\</span>
+	-p <span class="token number">11122</span>:22  <span class="token punctuation">\\</span>
+	-p <span class="token number">11140</span>:4000  <span class="token punctuation">\\</span>
+	gezp/ubuntu-desktop:20.04-cu11.0
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="oyd-pvnet" tabindex="-1"><a class="header-anchor" href="#oyd-pvnet" aria-hidden="true">#</a> oyd_pvnet</h3><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code><span class="token function">docker</span> run -d --restart<span class="token operator">=</span>on-failure <span class="token punctuation">\\</span>
+	--name oyd_pvnet <span class="token punctuation">\\</span>
+	--cap-add<span class="token operator">=</span>SYS_PTRACE <span class="token punctuation">\\</span>
+	--gpus all  <span class="token punctuation">\\</span>
+	--shm-size<span class="token operator">=</span>4g <span class="token punctuation">\\</span>
+	-v /media/yanglu/data:/home/ubuntu/data <span class="token punctuation">\\</span>
+	-v /tmp/.X11-unix:/tmp/.X11-unix:rw <span class="token punctuation">\\</span>
+	-p <span class="token number">11123</span>:22  <span class="token punctuation">\\</span>
+	-p <span class="token number">11141</span>:4000  <span class="token punctuation">\\</span>
+	gezp/ubuntu-desktop:18.04-cu10.1
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="oyd-ros" tabindex="-1"><a class="header-anchor" href="#oyd-ros" aria-hidden="true">#</a> oyd_ros</h3><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code><span class="token function">docker</span> run -d --restart<span class="token operator">=</span>on-failure <span class="token punctuation">\\</span>
+	--name oyd_ros <span class="token punctuation">\\</span>
+	--cap-add<span class="token operator">=</span>SYS_PTRACE <span class="token punctuation">\\</span>
+	--gpus all  <span class="token punctuation">\\</span>
+	--shm-size<span class="token operator">=</span>4g <span class="token punctuation">\\</span>
+	-v /media/yanglu/data:/home/ubuntu/data <span class="token punctuation">\\</span>
+	-v /tmp/.X11-unix:/tmp/.X11-unix:rw <span class="token punctuation">\\</span>
+	-p <span class="token number">11124</span>:22  <span class="token punctuation">\\</span>
+	-p <span class="token number">11142</span>:4000  <span class="token punctuation">\\</span>
+	gezp/ubuntu-desktop:20.04-cu11.0
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="oyd-ffb6d" tabindex="-1"><a class="header-anchor" href="#oyd-ffb6d" aria-hidden="true">#</a> oyd_ffb6d</h3><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code><span class="token function">docker</span> run -d --restart<span class="token operator">=</span>on-failure <span class="token punctuation">\\</span>
+	--name oyd_ffb6d <span class="token punctuation">\\</span>
+	--cap-add<span class="token operator">=</span>SYS_PTRACE <span class="token punctuation">\\</span>
+	--gpus all  <span class="token punctuation">\\</span>
+	--shm-size<span class="token operator">=</span>4g <span class="token punctuation">\\</span>
+	-v /media/yanglu/data:/home/ubuntu/data <span class="token punctuation">\\</span>
+	-v /tmp/.X11-unix:/tmp/.X11-unix:rw <span class="token punctuation">\\</span>
+	-p <span class="token number">11125</span>:22  <span class="token punctuation">\\</span>
+	-p <span class="token number">11143</span>:4000  <span class="token punctuation">\\</span>
+	gezp/ubuntu-desktop:18.04-cu10.1
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h3 id="oyd-ffb6d-new" tabindex="-1"><a class="header-anchor" href="#oyd-ffb6d-new" aria-hidden="true">#</a> oyd_ffb6d_new</h3><div class="language-bash ext-sh line-numbers-mode"><pre class="language-bash"><code><span class="token function">docker</span> run -d --restart<span class="token operator">=</span>on-failure <span class="token punctuation">\\</span>
+	--name oyd_ffb6d_new <span class="token punctuation">\\</span>
+	--cap-add<span class="token operator">=</span>SYS_PTRACE <span class="token punctuation">\\</span>
+	--gpus all  <span class="token punctuation">\\</span>
+	--shm-size<span class="token operator">=</span>4g <span class="token punctuation">\\</span>
+	-v /media/yanglu/data:/home/ubuntu/data <span class="token punctuation">\\</span>
+	-v /tmp/.X11-unix:/tmp/.X11-unix:rw <span class="token punctuation">\\</span>
+	-p <span class="token number">11126</span>:22  <span class="token punctuation">\\</span>
+	-p <span class="token number">11144</span>:4000  <span class="token punctuation">\\</span>
+	gezp/ubuntu-desktop:20.04-cu11.0
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div>`,13);function k(h,f){const s=e("ExternalLinkIcon");return c(),p(r,null,[i,n("blockquote",null,[n("p",null,[n("a",d,[b,t(s)])])]),m],64)}var v=u(l,[["render",k],["__file","docker.html.vue"]]);export{v as default};
