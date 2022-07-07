@@ -1,36 +1,64 @@
-<template><p>主题可以为你添加提示、注释、信息、注意、警告和详情自定义容器的支持。</p>
+<template><div><p>主题可以为你添加提示、注释、信息、注意、警告和详情自定义容器的支持，还有代码块。</p>
 <!-- more -->
-<h2 id="配置" tabindex="-1"><a class="header-anchor" href="#配置" aria-hidden="true">#</a> 配置</h2>
-<CodeGroup>
-<CodeGroupItem title="TS">
-<div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="language-typescript"><code><span class="token comment">// .vuepress/config.ts</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> defineHopeConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"vuepress-theme-hope"</span><span class="token punctuation">;</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineHopeConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  themeConfig<span class="token operator">:</span> <span class="token punctuation">{</span>
-    plugins<span class="token operator">:</span> <span class="token punctuation">{</span>
-      mdEnhance<span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token comment">// this is the default option, so you can use it directly</span>
-        container<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><div class="highlight-lines"><br><br><br><br><br><br><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><br><br></div><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div></CodeGroupItem>
-<CodeGroupItem title="JS">
-<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="language-javascript"><code><span class="token comment">// .vuepress/config.js</span>
-<span class="token keyword">const</span> <span class="token punctuation">{</span> defineHopeConfig <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"vuepress-theme-hope"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">defineHopeConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  <span class="token literal-property property">themeConfig</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token literal-property property">mdEnhance</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token comment">// this is the default option, so you can use it directly</span>
-        <span class="token literal-property property">container</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><div class="highlight-lines"><br><br><br><br><br><br><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><br><br></div><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div></CodeGroupItem>
-</CodeGroup>
+<h2 id="代码" tabindex="-1"><a class="header-anchor" href="#代码" aria-hidden="true">#</a> 代码</h2>
+<CodeTabs :data='[{"title":"代码块"},{"title":"容器"}]'>
+
+<template #tab0="{ title, value, isActive }">
+<div class="language-markdown ext-md line-numbers-mode"><pre v-pre class="language-markdown"><code>// .vuepress/config.ts
+import { defineUserConfig } from "vuepress";
+export default defineHopeConfig({
+  themeConfig: {
+    plugins: {
+      mdEnhance: {
+        // this is the default option, so you can use it directly
+        container: true,
+      },
+    },
+  },
+});
+</code></pre><div class="highlight-lines"><br><br><br><br><br><br><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><br><br></div><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></template>
+<template #tab1="{ title, value, isActive }">
+<div class="language-markdown ext-md line-numbers-mode"><pre v-pre class="language-markdown"><code>// .vuepress/config.js
+const { defineHopeConfig } = require("vuepress-theme-hope");
+module.exports = defineHopeConfig({
+  themeConfig: {
+    plugins: {
+      mdEnhance: {
+        // this is the default option, so you can use it directly
+        container: true,
+      },
+    },
+  },
+});
+</code></pre><div class="highlight-lines"><br><br><br><br><br><br><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><div class="highlight-line">&nbsp;</div><br><br></div><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></template>
+</CodeTabs>
+<p>代码块示例</p>
+<p>安装 VuePress Theme Hope:</p>
+<CodeTabs :data='[{"title":"pnpm"},{"title":"yarn"},{"title":"npm"}]' :active="2" tab-id="shell">
+
+<template #tab0="{ title, value, isActive }">
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">pnpm</span> <span class="token function">add</span> -D vuepress-theme-hope@next
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></template>
+<template #tab1="{ title, value, isActive }">
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">yarn</span> <span class="token function">add</span> -D vuepress-theme-hope@next
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></template>
+<template #tab2="{ title, value, isActive }">
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">npm</span> i -D vuepress-theme-hope@next
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></template>
+</CodeTabs>
+<p>安装 VuePress Plugin Markdown Enhance:</p>
+<CodeTabs :data='[{"title":"pnpm"},{"title":"yarn"},{"title":"npm"}]' :active="2" tab-id="shell">
+
+<template #tab0="{ title, value, isActive }">
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">pnpm</span> <span class="token function">add</span> -D vuepress-plugin-md-enhance@next
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></template>
+<template #tab1="{ title, value, isActive }">
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">yarn</span> <span class="token function">add</span> -D vuepress-plugin-md-enhance@next
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></template>
+<template #tab2="{ title, value, isActive }">
+<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">npm</span> i -D vuepress-plugin-md-enhance@next
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></template>
+</CodeTabs>
 <h2 id="演示" tabindex="-1"><a class="header-anchor" href="#演示" aria-hidden="true">#</a> 演示</h2>
 <div class="custom-container info"><p class="custom-container-title">相关信息</p>
 <p>信息容器。</p>
@@ -47,33 +75,33 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <div class="custom-container danger"><p class="custom-container-title">警告</p>
 <p>危险容器</p>
 </div>
-<details class="custom-block details"><summary>详情</summary>
+<details class="custom-container details"><summary>详情</summary>
 <p>详情容器</p>
 </details>
 <div class="custom-container info"><p class="custom-container-title">自定义标题</p>
-<p>一个有 <code>代码</code> 和 <a href="#markdown">链接</a> 的信息容器。</p>
+<p>一个有 <code v-pre>代码</code> 和 <a href="#markdown">链接</a> 的信息容器。</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="language-javascript"><code><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br></div></div></div>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div>
 <div class="custom-container note"><p class="custom-container-title">自定义标题</p>
-<p>一个有 <code>代码</code> 和 <a href="#markdown">链接</a> 的注释容器。</p>
+<p>一个有 <code v-pre>代码</code> 和 <a href="#markdown">链接</a> 的注释容器。</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="language-javascript"><code><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br></div></div></div>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div>
 <div class="custom-container tip"><p class="custom-container-title">自定义标题</p>
-<p>一个有 <code>代码</code> 和 <a href="#markdown">链接</a> 的提示容器。</p>
+<p>一个有 <code v-pre>代码</code> 和 <a href="#markdown">链接</a> 的提示容器。</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="language-javascript"><code><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br></div></div></div>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div>
 <div class="custom-container warning"><p class="custom-container-title">自定义标题</p>
-<p>一个有 <code>代码</code> 和 <a href="#markdown">链接</a> 的警告容器。</p>
+<p>一个有 <code v-pre>代码</code> 和 <a href="#markdown">链接</a> 的警告容器。</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="language-javascript"><code><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br></div></div></div>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div>
 <div class="custom-container danger"><p class="custom-container-title">自定义标题</p>
-<p>一个有 <code>代码</code> 和 <a href="#markdown">链接</a> 的危险容器。</p>
+<p>一个有 <code v-pre>代码</code> 和 <a href="#markdown">链接</a> 的危险容器。</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="language-javascript"><code><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br></div></div></div>
-<details class="custom-block details"><summary>自定义标题</summary>
-<p>一个有 <code>代码</code> 和 <a href="#markdown">链接</a> 的详情容器。</p>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div>
+<details class="custom-container details"><summary>自定义标题</summary>
+<p>一个有 <code v-pre>代码</code> 和 <a href="#markdown">链接</a> 的详情容器。</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="language-javascript"><code><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br></div></div></details>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></details>
 <div class="custom-container info"><p class="custom-container-title">自定义信息</p>
 </div>
 <div class="custom-container note"><p class="custom-container-title">自定义注释</p>
@@ -182,4 +210,4 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 
 ::: danger 自定义危险
 :::
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br></div></div></template>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>

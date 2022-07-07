@@ -1,3 +1,0 @@
-const t={key:"v-b313a528",path:"/tag/dfs/",title:"DFS \u6807\u7B7E",lang:"zh-CN",frontmatter:{title:"DFS \u6807\u7B7E",blog:{type:"category",name:"DFS",key:"tag"},layout:"Blog",summary:"",head:[["meta",{property:"og:url",content:"https://gragoyd.github.io/tag/dfs/"}],["meta",{property:"og:site_name",content:"Grag's Blog"}],["meta",{property:"og:title",content:"DFS \u6807\u7B7E"}],["meta",{property:"og:type",content:"website"}],["meta",{property:"og:locale",content:"zh-CN"}]]},excerpt:"",headers:[],git:{},readingTime:{minutes:0,words:0},copyright:`\u8457\u4F5C\u6743\u5F52Grag\u6240\u6709
-\u57FA\u4E8EMIT\u534F\u8BAE
-\u539F\u6587\u94FE\u63A5\uFF1Ahttps://github.com/gragoyd/tag/dfs/`,filePathRelative:null};export{t as data};

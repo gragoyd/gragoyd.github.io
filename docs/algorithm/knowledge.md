@@ -1,5 +1,5 @@
 ---
-index: 1
+order: 1
 icon: guide
 date: 2022-04-11
 title: 算法讲解
@@ -10,8 +10,8 @@ star: true
 
 ### 反转链表
 
-:::: code-group
-::: code-group-item 头插法
+::: code-tabs
+@tab 头插法
 
 ```java
 class Solution {
@@ -28,8 +28,7 @@ class Solution {
 }
 ```
 
-:::
-::: code-group-item 递归
+@tab 递归
 
 ```java
 class Solution {
@@ -45,12 +44,11 @@ class Solution {
 ```
 
 :::
-::::
 
 ### 队列和栈相互实现
 
-:::: code-group
-::: code-group-item 用栈实现队列
+::: code-tabs
+@tab 用栈实现队列
 
 ```java
 class CQueue {
@@ -78,8 +76,7 @@ class CQueue {
 }
 ```
 
-:::
-::: code-group-item 用队列实现栈
+@tab 用队列实现栈
 
 ```java
 class MyStack {
@@ -111,12 +108,11 @@ class MyStack {
 ```
 
 :::
-::::
 
 ### BFS 模版
 
-:::: code-group
-::: code-group-item 树
+::: code-tabs
+@tab 树
 
 ```java
 class Solution {
@@ -137,8 +133,7 @@ class Solution {
 }
 ```
 
-:::
-::: code-group-item 图
+@tab 图
 
 ```java
 class Solution {
@@ -169,7 +164,6 @@ class Solution {
 ```
 
 :::
-::::
 
 ### 单调队列
 
@@ -208,8 +202,8 @@ class MaxQueue {
 
 ### 二叉树模拟隐式栈进行遍历
 
-:::: code-group
-::: code-group-item 前序
+::: code-tabs
+@tab 前序
 
 ```java
 class Solution {
@@ -233,8 +227,7 @@ class Solution {
 }
 ```
 
-:::
-::: code-group-item 中序
+@tab 中序
 
 ```java
 class Solution {
@@ -255,8 +248,7 @@ class Solution {
 }
 ```
 
-:::
-::: code-group-item 后序
+@tab 后序
 
 ```java
 class Solution {
@@ -282,12 +274,11 @@ class Solution {
 ```
 
 :::
-::::
 
 ### 图 DFS
 
-:::: code-group
-::: code-group-item 隐式栈
+::: code-tabs
+@tab 隐式栈
 
 ```java
 class Solution {
@@ -307,8 +298,7 @@ class Solution {
 }
 ```
 
-:::
-::: code-group-item 模拟调用栈
+@tab 模拟调用栈
 
 ```java
 public class Solution {
@@ -333,7 +323,6 @@ public class Solution {
 ```
 
 :::
-::::
 
 ### 单调栈
 
@@ -393,8 +382,8 @@ class Solution {
 [课程表 II](https://leetcode-cn.com/problems/course-schedule-ii/)：
 给定所有必须得上的课的先修关系，求一种修完所有课的顺序（存在的话）
 
-:::: code-group
-::: code-group-item DFS
+::: code-tabs
+@tab DFS
 
 ```java
 class Solution {
@@ -441,8 +430,7 @@ class Solution {
 }
 ```
 
-:::
-::: code-group-item BFS
+@tab BFS
 
 ``` java
 class Solution {
@@ -479,7 +467,6 @@ class Solution {
 ```
 
 :::
-::::
 
 ### 并查集
 
@@ -496,8 +483,8 @@ class Solution {
 - 在迭代过程中更改起始节点的父节点后无需维护初始父节点和依次经过的父节点的重量，因为当前集合在后续合并时只会用到根节点的重量
 - 路径压缩不适用于高度并查集，因为遍历更改后根节点的高度可能会变，需要重新计算
 :::
-:::: code-group
-::: code-group-item 高度并查集
+::: code-tabs
+@tab 高度并查集
 
 ```java
 class UnionFindSet {
@@ -543,8 +530,7 @@ class UnionFindSet {
 }
 ```
 
-:::
-::: code-group-item 重量并查集
+@tab 重量并查集
 
 ```java
 class UnionFindSet {
@@ -593,31 +579,7 @@ class UnionFindSet {
 
 :::
 
-::::
-
 ### [Dijkstra 算法 - 知乎][00]
-
-### mermaid 绘图样例
-
-```mermaid
-sequenceDiagram
-    participant z as 张三
-    participant l as 李四
-    loop 日复一日
-        z->>l: 吃了吗您呐？
-        l-->>z: 吃了，您呢？
-        activate z
-        Note left of z: 想了一下
-        alt 还没吃
-            z-xl: 还没呢，正准备回去吃
-        else 已经吃了
-            z-xl: 我也吃过了，哈哈
-        end
-        opt 大过年的
-            l-->z: 祝您新年好啊
-        end
-    end
-```
 
 ### 交换两不同值变量的值
 
@@ -648,8 +610,8 @@ a = a ^ b;	// a2 = a1 ^ b1 = a0 ^ b0 ^ a0 = b0
 
 #### 模版
 
-:::: code-group
-::: code-group-item 总模版
+::: code-tabs
+@tab 总模版
 
 ```java
 void backtracking(path, param){
@@ -667,8 +629,7 @@ void backtracking(path, param){
 }
 ```
 
-:::
-::: code-group-item 数据无序哈希表去重
+@tab 数据无序哈希表去重
 
 ```java
 // 适用于数据无序或者不可重排序将重复值并到一起的情况
@@ -690,8 +651,7 @@ void backtracking(path, param){
 }
 ```
 
-:::
-::: code-group-item 数据有序条件去重
+@tab 数据有序条件去重
 
 ```java
 // 适用于数据有序或者可重排序将重复值并到一起的情况
@@ -712,7 +672,6 @@ void backtracking(path, start){
 ```
 
 :::
-::::
 
 #### 实现要点
 
@@ -743,8 +702,8 @@ void backtracking(path, start){
 
 #### 背包问题
 
-:::: code-group
-::: code-group-item 01 背包
+::: code-tabs
+@tab 01 背包
 
 ```java
 // 每种物品仅有 1 个，且物品放入背包无顺序要求
@@ -783,8 +742,7 @@ public class MyTest {
 }
 ```
 
-:::
-::: code-group-item 完全背包
+@tab 完全背包
 
 ```java
 // 完全背包与 01 背包的不同在于每种物品的数量是无限的，可以无限次选取某种物品放入
@@ -806,8 +764,7 @@ public class MyTest {
 }
 ```
 
-:::
-::: code-group-item 顺序背包
+@tab 顺序背包
 
 ```java
 // 若要求放入背包的物品有顺序要求，则需将背包限制放到外循环，将各物品的遍历置于内循环，方能产生各种物品的不同顺序
@@ -840,8 +797,7 @@ public class MyTest {
 }
 ```
 
-:::
-::: code-group-item 多重背包
+@tab 多重背包
 
 ```java
 // 多重背包指各种物品最多有若干个
@@ -877,7 +833,6 @@ public class MyTest {
 ```
 
 :::
-::::
 
 ### 计算组合数
 

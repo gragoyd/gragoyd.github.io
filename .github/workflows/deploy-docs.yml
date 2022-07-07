@@ -17,22 +17,33 @@ jobs:
           # 如果你文档需要 Git 子模块，取消注释下一行
           # submodules: true
 
-      - uses: actions/cache@v3
-        id: node-modules
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: node_modules/
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
+          version: 7
+          run_install: true
+
+      - name: 设置 Node.js
+        uses: action/setup-node@v3
+        with:
+          node-version: 16
+          cache: pnpm
+
+      # - uses: actions/cache@v3
+      #   id: node-modules
+      #   with:
+      #     path: node_modules/
+      #     key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-modules-
 
       - name: 安装依赖
-        if: steps.node-modules.outputs.cache-hit != 'true'
-        run: npm install
+        run: pnpm install --frozen-lockfile
 
       - name: 构建文档
         env:
           NODE_OPTIONS: --max_old_space_size=4096
-        run: npm run docs:build
+        run: pnpm run docs:build
 
       - name: 部署文档
         uses: JamesIves/github-pages-deploy-action@v4

@@ -14,8 +14,8 @@ title: 假随机数组词造句
 
 在进行稍长的查找时就会明显过长，后续可以考虑将区间分段用多线程分别同时查找
 
-:::: code-group
-::: code-group-item demo
+::: code-tabs
+@tab demo
 
 ```java
 import java.util.Random;
@@ -36,8 +36,7 @@ public class Whisper {
 }
 ```
 
-:::
-::: code-group-item 完整实现
+@tab:active 完整实现
 
 ```java
 import java.util.NoSuchElementException;
@@ -114,4 +113,3 @@ public class FakeRandom {
 ```
 
 :::
-::::

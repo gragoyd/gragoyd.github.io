@@ -11,12 +11,15 @@ article: false
 
 ::: info 网站框架
 [vuepress-theme-hope](https://vuepress-theme-hope.github.io/v2/zh/)
+
+[框架 Markdown 增强说明](https://vuepress-theme-hope.github.io/v2/zh/guide/markdown/)
+
 [框架内置图标支持](https://vuepress-theme-hope.github.io/v2/zh/guide/interface/icon.html#iconfont-%E7%B2%BE%E9%80%89%E5%9B%BE%E6%A0%87)
 :::
 
 ## 本站开发命令记录
 
-编写时开本地服务器实时查看修改效果：`npm run docs:dev`【若修改没反应总是读缓存就重启网站服务器】
+编写时开本地服务器实时查看修改效果：`pnpm run docs:dev`【若修改没反应总是读缓存就重启网站服务器】
 
 发布：
 

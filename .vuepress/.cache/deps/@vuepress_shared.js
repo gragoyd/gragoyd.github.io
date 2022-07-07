@@ -1,214 +1,16 @@
 import {
   isArray,
   isFunction,
-  isPromise,
   isString
-} from "./chunk-3V6JVANK.js";
-import {
-  init_define_ARTICLE_INFO_LOCALES,
-  init_define_BACK_TO_TOP_LOCALES,
-  init_define_CODE_COPY_LOCALES,
-  init_define_CODE_COPY_OPIONS,
-  init_define_CODE_DEMO_OPTIONS,
-  init_define_COMMENT_OPTIONS,
-  init_define_EXTERNAL_LINK_ICON_LOCALES,
-  init_define_MERMAID_OPTIONS,
-  init_define_PAGINATION_LOCALES,
-  init_define_PHOTO_SWIPE_LOCALES,
-  init_define_PHOTO_SWIPE_OPTIONS,
-  init_define_READING_TIME_LOCALES,
-  init_define_REVEAL_CONFIG,
-  init_define_TOC_LOCALES,
-  init_define_WALINE_LOCALES
-} from "./chunk-ZU3DIXED.js";
+} from "./chunk-4CDELIQH.js";
+import "./chunk-PQECYZMI.js";
 
-// dep:@vuepress_shared
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/index.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/types/index.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/types/head.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/types/locale.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/types/page.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/types/site.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/types/ssr.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/utils/index.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/utils/dedupeHead.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/utils/resolveHeadIdentifier.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-var resolveHeadIdentifier = ([tag, attrs, content]) => {
+// node_modules/.pnpm/@vuepress+shared@2.0.0-beta.48/node_modules/@vuepress/shared/dist/index.js
+var resolveHeadIdentifier = ([
+  tag,
+  attrs,
+  content
+]) => {
   if (tag === "meta" && attrs.name) {
     return `${tag}.${attrs.name}`;
   }
@@ -220,8 +22,6 @@ var resolveHeadIdentifier = ([tag, attrs, content]) => {
   }
   return JSON.stringify([tag, attrs, content]);
 };
-
-// node_modules/@vuepress/shared/lib/esm/utils/dedupeHead.js
 var dedupeHead = (head) => {
   const identifierSet = /* @__PURE__ */ new Set();
   const result = [];
@@ -234,59 +34,8 @@ var dedupeHead = (head) => {
   });
   return result;
 };
-
-// node_modules/@vuepress/shared/lib/esm/utils/ensureLeadingSlash.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var ensureLeadingSlash = (str) => str.replace(/^\/?/, "/");
-
-// node_modules/@vuepress/shared/lib/esm/utils/ensureEndingSlash.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var ensureEndingSlash = (str) => /(\.html|\/)$/.test(str) ? str : str + "/";
-
-// node_modules/@vuepress/shared/lib/esm/utils/formatDateString.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var formatDateString = (str, defaultDateString = "") => {
   const dateMatch = str.match(/\b(\d{4})-(\d{1,2})-(\d{1,2})\b/);
   if (dateMatch === null) {
@@ -295,23 +44,6 @@ var formatDateString = (str, defaultDateString = "") => {
   const [, yearStr, monthStr, dayStr] = dateMatch;
   return [yearStr, monthStr.padStart(2, "0"), dayStr.padStart(2, "0")].join("-");
 };
-
-// node_modules/@vuepress/shared/lib/esm/utils/htmlEscape.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var htmlEscapeMap = {
   "&": "&amp;",
   "<": "&lt;",
@@ -321,23 +53,6 @@ var htmlEscapeMap = {
 };
 var htmlEscapeRegexp = /[&<>'"]/g;
 var htmlEscape = (str) => str.replace(htmlEscapeRegexp, (char) => htmlEscapeMap[char]);
-
-// node_modules/@vuepress/shared/lib/esm/utils/htmlUnescape.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var htmlUnescapeMap = {
   "&amp;": "&",
   "&#38;": "&",
@@ -352,216 +67,23 @@ var htmlUnescapeMap = {
 };
 var htmlUnescapeRegexp = /&(amp|#38|lt|#60|gt|#62|apos|#39|quot|#34);/g;
 var htmlUnescape = (str) => str.replace(htmlUnescapeRegexp, (char) => htmlUnescapeMap[char]);
-
-// node_modules/@vuepress/shared/lib/esm/utils/isLinkExternal.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-
-// node_modules/@vuepress/shared/lib/esm/utils/isLinkFtp.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var isLinkFtp = (link) => link.startsWith("ftp://");
-
-// node_modules/@vuepress/shared/lib/esm/utils/isLinkHttp.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var isLinkHttp = (link) => /^(https?:)?\/\//.test(link);
-
-// node_modules/@vuepress/shared/lib/esm/utils/isLinkExternal.js
+var markdownLinkRegexp = /.md((\?|#).*)?$/;
 var isLinkExternal = (link, base = "/") => {
   if (isLinkHttp(link) || isLinkFtp(link)) {
     return true;
   }
-  if (link.startsWith("/") && !link.startsWith(base)) {
+  if (link.startsWith("/") && !link.startsWith(base) && !markdownLinkRegexp.test(link)) {
     return true;
   }
   return false;
 };
-
-// node_modules/@vuepress/shared/lib/esm/utils/isLinkMailto.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var isLinkMailto = (link) => /^mailto:/.test(link);
-
-// node_modules/@vuepress/shared/lib/esm/utils/isLinkTel.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var isLinkTel = (link) => /^tel:/.test(link);
-
-// node_modules/@vuepress/shared/lib/esm/utils/isPlainObject.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var isPlainObject = (val) => Object.prototype.toString.call(val) === "[object Object]";
-
-// node_modules/@vuepress/shared/lib/esm/utils/normalizePackageName.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-var normalizePackageName = (request, org, type = null) => {
-  const orgPrefix = `${org}-`;
-  const typePrefix = type === null ? "" : `${type}-`;
-  const scopedMatch = request.match(/^@(.*)\/(.*)$/);
-  if (scopedMatch === null) {
-    if (request.startsWith(`${orgPrefix}${typePrefix}`)) {
-      return request;
-    }
-    return `${orgPrefix}${typePrefix}${request}`;
-  }
-  const [, reqOrg, reqName] = scopedMatch;
-  if (reqOrg === org) {
-    if (reqName.startsWith(typePrefix)) {
-      return request;
-    }
-    return `@${reqOrg}/${typePrefix}${reqName}`;
-  }
-  if (reqName.startsWith(`${orgPrefix}${typePrefix}`)) {
-    return request;
-  }
-  return `@${reqOrg}/${orgPrefix}${typePrefix}${reqName}`;
-};
-
-// node_modules/@vuepress/shared/lib/esm/utils/removeEndingSlash.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var removeEndingSlash = (str) => str.replace(/\/$/, "");
-
-// node_modules/@vuepress/shared/lib/esm/utils/removeLeadingSlash.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var removeLeadingSlash = (str) => str.replace(/^\//, "");
-
-// node_modules/@vuepress/shared/lib/esm/utils/resolveLocalePath.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var resolveLocalePath = (locales, routePath) => {
   const localePaths = Object.keys(locales).sort((a, b) => {
     const levelDelta = b.split("/").length - a.split("/").length;
@@ -577,23 +99,6 @@ var resolveLocalePath = (locales, routePath) => {
   }
   return "/";
 };
-
-// node_modules/@vuepress/shared/lib/esm/utils/resolveRoutePathFromUrl.js
-init_define_ARTICLE_INFO_LOCALES();
-init_define_BACK_TO_TOP_LOCALES();
-init_define_CODE_COPY_LOCALES();
-init_define_CODE_COPY_OPIONS();
-init_define_CODE_DEMO_OPTIONS();
-init_define_COMMENT_OPTIONS();
-init_define_MERMAID_OPTIONS();
-init_define_PAGINATION_LOCALES();
-init_define_PHOTO_SWIPE_LOCALES();
-init_define_PHOTO_SWIPE_OPTIONS();
-init_define_READING_TIME_LOCALES();
-init_define_REVEAL_CONFIG();
-init_define_TOC_LOCALES();
-init_define_WALINE_LOCALES();
-init_define_EXTERNAL_LINK_ICON_LOCALES();
 var resolveRoutePathFromUrl = (url, base = "/") => url.replace(/^(https?:)?\/\/[^/]*/, "").replace(new RegExp(`^${base}`), "/");
 export {
   dedupeHead,
@@ -610,9 +115,7 @@ export {
   isLinkMailto,
   isLinkTel,
   isPlainObject,
-  isPromise,
   isString,
-  normalizePackageName,
   removeEndingSlash,
   removeLeadingSlash,
   resolveHeadIdentifier,
