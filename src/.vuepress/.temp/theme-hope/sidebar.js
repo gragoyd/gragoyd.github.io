@@ -1,1 +1,0 @@
-export const sidebarData = {"/docs/algorithm/":["knowledge","dynamic_programming","multi","backtrack","simulation","search","greed"],"/docs/work/":["","java_knowlegde","vim_tutor"],"/docs/essay/":["","fake_random","solution","image_embed"]};
