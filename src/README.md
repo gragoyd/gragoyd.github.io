@@ -43,11 +43,11 @@ features:
 
 编写时开本地服务器实时查看修改效果：`pnpm run docs:dev`
 
+编译时报错参考 [issue](https://github.com/vuepress-theme-hope/vuepress-theme-hope/issues/2743) 中最后给出的解决链接，按指示更新即可
+
 发布：
 
 - GitHub：用 Action + Pages 功能，在 push 之后自动编译并部署
+  - 记得给仓库的 workflow 添加写的权限
+  - 仓库的 Pages 功能中网站基于的分支得改成 yml 中设定的部署分支
 - 服务器：先`pnpm run docs:build`在`src/.vuepress/dist`目录下生成静态网页文件，再部署到服务器上
-
-编译时报错参考 [issue](https://github.com/vuepress-theme-hope/vuepress-theme-hope/issues/2743) 中最后给出的解决链接，按指示更新即可
-
-记得给仓库的 workflow 添加写的权限
