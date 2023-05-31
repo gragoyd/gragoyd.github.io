@@ -19,6 +19,5 @@ export default defineUserConfig({
         searchProPlugin({
             indexContent: true
         }),
-
     ]
 });

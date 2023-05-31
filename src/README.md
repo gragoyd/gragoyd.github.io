@@ -47,3 +47,5 @@ features:
 
 - GitHub：用 Action + Pages 功能，在 push 之后自动编译并部署
 - 服务器：先`pnpm run docs:build`在`src/.vuepress/dist`目录下生成静态网页文件，再部署到服务器上
+
+编译时报错参考 [issue](https://github.com/vuepress-theme-hope/vuepress-theme-hope/issues/2743) 中最后给出的解决链接，按指示更新即可
