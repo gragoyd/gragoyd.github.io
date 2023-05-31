@@ -30,6 +30,8 @@ jobs:
           node-version: 18
           cache: pnpm
 
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
 
       - name: 构建文档
         env:
