@@ -80,6 +80,7 @@ title: Vim 简明教程
 - `gg`: goto file top
 - `{line}gg`: goto special line
 - `G`: goto file end
+- `H/M/L`: move cursor to top/middle/bottom of view
 - `{line}G` / `:{line}<Enter>`: goto start of {line}
 - `+` / `<Enter>`: goto non-blank char of next line
 - `-`: goto non-blank char of previous line

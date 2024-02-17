@@ -31,7 +31,7 @@ export default hopeTheme({
     hotReload: true,
 
     displayFooter: true,
-    footer: "🐻",
+    footer: "🥴",
     copyright: "MIT Licensed | Copyright © 2022-present <a href=\"https://github.com/gragoyd\">Grag</a>",
     pageInfo: ["Author", "Date", "Category", "Tag", "Word", "ReadingTime"],
 
